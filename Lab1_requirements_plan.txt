@@ -1,0 +1,27 @@
+Requirements:
+
+ 1. Creating and using your own class, struct, record and enum;
+ 2. Property usage in struct and class;
+ 3. Named and optional argument usage;
+ 4. Extension method usage;
+ 5. Iterating through collection the right way;
+ 6. Reading from a file using a stream;
+ 7. Create and use at least 1 generic type;
+ 8. Boxing and unboxing;
+ 9.LINQ to Objects usage (methods or queries);
+10. Implement at least one of the standard .NET interfaces (IEnumerable, IComparable, IComparer, IEquatable, IEnumerator, etc.)
+
+Functionality 1: Create a Simple Text Block
+    - Requirement 1: Text Block itself will be a class.
+    - Requirement 1: Record class can hold creation date information and other data that will be constant. The Record then will be useful in 
+filtering functionality to compare the data in the Record.
+    - Requirement 1: Enums might be used to store text block classes inside. Another option might be to use them to create random note tags
+for the future perspective of adding other users to collaborate on notes.
+    - Requirement 1: Structs can be used to hold some simple data. (open for interpretation)
+    - Requirement 2: Using properties in the text block class to encapsulate the text content and other properties.
+    - Requirement 3: Creting a class will have the possibility to have initial data from the user (name of note), but if the data is not provided,
+the data will simply be set to initial properties (note #1, note #2, etc...).
+
+
+Functionality 2: Save and Load Text Blocks
+    - Requirement 6: Using streams to save/load to/from simple .txt file.
