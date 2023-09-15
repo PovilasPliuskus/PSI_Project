@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineeringProject.Models;
+using SoftwareEngineeringProject.NoteLibrary;
 using System.Diagnostics;
 
 namespace SoftwareEngineeringProject.Controllers
@@ -15,6 +16,10 @@ namespace SoftwareEngineeringProject.Controllers
 
         public IActionResult Index()
         {
+            var testNote = new Note("1", "someName", "Hello World from Note", 5, 25);
+
+            ViewBag.Note = testNote;
+
             return View();
         }
 

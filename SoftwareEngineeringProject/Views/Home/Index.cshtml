@@ -1,3 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<h1>Note:</h1>
+<textarea rows="@ViewBag.Note.Rows" cols="@ViewBag.Note.Columns">@ViewBag.Note.Value</textarea>
