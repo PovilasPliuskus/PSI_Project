@@ -40,9 +40,9 @@
             get { return _category; }
         }
 
-        public int GetId()
+        public string GetId()
         {
-            return _information.Id;
+            return _information.Id.ToString();
         }
 
         public string GetCreationDate()
@@ -79,5 +79,19 @@
             Console.WriteLine("category: " + Category);
             Console.WriteLine();
         }
+
+        public string ToStringToSend()
+        {
+            return "{" +
+                   $"\"id\": {GetId()},\n" +
+                   $"\"name\": \"{Name}\",\n" +
+                   $"\"value\": \"{Value}\",\n" +
+                   $"\"rows\": {Rows},\n" +
+                   $"\"columns\": {Columns},\n" +
+                   $"\"creationDate\": \"{GetCreationDate()}\",\n" +
+                   $"\"category\": \"{Category}\"\n" +
+                   "}";
+        }
+
     }
 }
