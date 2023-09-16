@@ -17,6 +17,10 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult Index()
         {
             var testNote = new Note(value:"Hello");
+            testNote.ToString();
+
+            var testNote2 = new Note(value: "World!");
+            testNote2.ToString();
 
             ViewBag.Note = testNote;
 

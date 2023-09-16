@@ -61,9 +61,14 @@
             return new NoteInformationRecord(CreationDate, Id);
         }
 
-        public string Render()
+        public void ToString()
         {
-            return $"<textarea>{Value}</textarea>";
+            Console.WriteLine("name: " + _name);
+            Console.WriteLine("value: " + _value);
+            Console.WriteLine("rows: " + _rows);
+            Console.WriteLine("columns: " + _columns);
+            Console.WriteLine("creation date: " + GetCreationDate());
+            Console.WriteLine("id: " + GetId());
         }
     }
 }
