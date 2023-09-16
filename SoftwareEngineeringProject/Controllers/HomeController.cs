@@ -2,6 +2,7 @@
 using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.NoteLibrary;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace SoftwareEngineeringProject.Controllers
 {
@@ -16,15 +17,16 @@ namespace SoftwareEngineeringProject.Controllers
 
         public IActionResult Index()
         {
-            var testNote = new Note(value:"Hello");
+            return View();
+        }
+
+        public IActionResult CreateNote()
+        {
+            var testNote = new Note(value: "Hello");
+
             testNote.ToString();
 
-            var testNote2 = new Note(value: "World!");
-            testNote2.ToString();
-
-            ViewBag.Note = testNote;
-
-            return View();
+            return Json(testNote);
         }
 
         public IActionResult Privacy()

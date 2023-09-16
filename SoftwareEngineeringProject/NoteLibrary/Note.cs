@@ -70,13 +70,14 @@
 
         public void ToString()
         {
+            Console.WriteLine("id: " + GetId());
             Console.WriteLine("name: " + Name);
             Console.WriteLine("value: " + Value);
             Console.WriteLine("rows: " + Rows);
             Console.WriteLine("columns: " + Columns);
             Console.WriteLine("creation date: " + GetCreationDate());
-            Console.WriteLine("id: " + GetId());
             Console.WriteLine("category: " + Category);
+            Console.WriteLine();
         }
     }
 }
