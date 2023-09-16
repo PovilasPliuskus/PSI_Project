@@ -9,6 +9,7 @@
         private NoteInformationRecord _information;
         private int _rows;
         private int _columns;
+        private NoteCategory _category;
 
         public String Name
         {
@@ -34,6 +35,11 @@
             set { _columns = value; }
         }
 
+        public NoteCategory Category
+        {
+            get { return _category; }
+        }
+
         public int GetId()
         {
             return _information.Id;
@@ -44,13 +50,14 @@
             return _information.CreationDate.ToString();
         }
 
-        public Note(string name = "New Note", string value = "", int rows = 10, int columns = 100)
+        public Note(string name = "New Note", string value = "", int rows = 10, int columns = 100, NoteCategory category = NoteCategory.Personal)
         {
             _information = CreateNoteInformationData();
             _name = name;
             _value = value;
             _rows = rows;
             _columns = columns;
+            _category = category;
         }
 
         public NoteInformationRecord CreateNoteInformationData()
@@ -63,12 +70,13 @@
 
         public void ToString()
         {
-            Console.WriteLine("name: " + _name);
-            Console.WriteLine("value: " + _value);
-            Console.WriteLine("rows: " + _rows);
-            Console.WriteLine("columns: " + _columns);
+            Console.WriteLine("name: " + Name);
+            Console.WriteLine("value: " + Value);
+            Console.WriteLine("rows: " + Rows);
+            Console.WriteLine("columns: " + Columns);
             Console.WriteLine("creation date: " + GetCreationDate());
             Console.WriteLine("id: " + GetId());
+            Console.WriteLine("category: " + Category);
         }
     }
 }
