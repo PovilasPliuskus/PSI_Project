@@ -1,49 +1,64 @@
 ﻿namespace SoftwareEngineeringProject.NoteLibrary
 {
+    public record class NoteInformationRecord(DateTime CreationDate, int Id);
     public class Note
     {
-        private String id;
-        private String name;
-        private String value;
-        private int rows;
-        private int columns;
-
-        public String ID
-        {
-            get { return id; }
-        }
+        private static int _idNumber = 0;
+        private String _name;
+        private String _value;
+        private NoteInformationRecord _information;
+        private int _rows;
+        private int _columns;
 
         public String Name
         {
-            get { return name; }
-            set { name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public String Value
         {
-            get { return value; }
-            set { this.value = value.ToString(); }
+            get { return _value; }
+            set { _value = value.ToString(); }
         }
 
         public int Rows
         {
-            get { return rows; }
-            set { rows = value; }
+            get { return _rows; }
+            set { _rows = value; }
         }
 
         public int Columns
         {
-            get { return columns; }
-            set { columns = value; }
+            get { return _columns; }
+            set { _columns = value; }
         }
 
-        public Note(string id, string name, string value, int rows, int columns)
+        public int GetId()
         {
-            this.id = id;
-            this.name = name;
-            this.value = value;
-            this.rows = rows;
-            this.columns = columns;
+            return _information.Id;
+        }
+
+        public string GetCreationDate()
+        {
+            return _information.CreationDate.ToString();
+        }
+
+        public Note(string name = "New Note", string value = "", int rows = 10, int columns = 100)
+        {
+            _information = CreateNoteInformationData();
+            _name = name;
+            _value = value;
+            _rows = rows;
+            _columns = columns;
+        }
+
+        public NoteInformationRecord CreateNoteInformationData()
+        {
+            DateTime CreationDate = DateTime.Now;
+            int Id = _idNumber++;
+
+            return new NoteInformationRecord(CreationDate, Id);
         }
 
         public string Render()
