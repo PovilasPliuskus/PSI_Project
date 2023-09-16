@@ -9,6 +9,8 @@ document.getElementById("addNoteButton").addEventListener("click", function () {
             textarea.cols = data.columns;
             textarea.rows = data.rows;
 
+            textarea.classList.add("note-textarea");
+
             document.getElementById("noteContainer").appendChild(textarea);
         })
         .catch(error => {
