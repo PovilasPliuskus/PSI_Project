@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineeringProject.Models;
+using SoftwareEngineeringProject.NoteLibrary;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace SoftwareEngineeringProject.Controllers
 {
@@ -16,6 +18,14 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult CreateNote()
+        {
+            var testNote = new Note(value: "Hello");
+            var noteString = testNote.ToStringToSend();
+
+            return Content(noteString, "application/Json");
         }
 
         public IActionResult Privacy()

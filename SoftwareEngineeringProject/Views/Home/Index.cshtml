@@ -2,7 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Notes Project</title>
+        <link rel="stylesheet" href="./css/site.css"/>
+    </head>
+    <body>
+        <header>
+
+        </header>
+
+        <button id="addNoteButton">Add Note</button>
+        <div id="noteContainer"></div>
+
+        <footer>
+
+        </footer>
+
+        <script src="./js/site.js"></script>
+    </body>
+</html>
+@* <textarea rows="@ViewBag.Note.Rows" cols="@ViewBag.Note.Columns">@ViewBag.Note.Value</textarea> *@

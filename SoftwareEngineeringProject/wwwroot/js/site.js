@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// Add Note button click
+document.getElementById("addNoteButton").addEventListener("click", function () {
+    fetch("Home/CreateNote")
+        .then(response => response.json())
+        .then(data => {
+            const textarea = document.createElement("textarea");
 
-// Write your JavaScript code.
+            textarea.value = data.value;
+            textarea.cols = data.columns;
+            textarea.rows = data.rows;
+
+            textarea.classList.add("note-textarea");
+
+            document.getElementById("noteContainer").appendChild(textarea);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
