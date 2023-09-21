@@ -23,11 +23,11 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult CreateNote()
         {
             var testNote = new Note(value: "Hello");
+            Note.Notes.Add(testNote); //add new note to list for saving/loading (test)
             var noteString = testNote.ToStringToSend();
 
             return Content(noteString, "application/Json");
         }
-
         public IActionResult Privacy()
         {
             return View();
