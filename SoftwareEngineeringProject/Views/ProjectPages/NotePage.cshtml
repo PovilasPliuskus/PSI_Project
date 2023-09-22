@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Notes</title>
+        <link rel="stylesheet" type="text/css" href="/css/NotePageStyles.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="toolbar">
+                <button>Add Note</button>
+                <button>Save Notes</button>
+                <div class="note-search-bar">
+                    <form action="/Search", method ="get">
+                        <input type="text" name="query" placeholder="Search..." autocomplete="off"/>
+                    </form>
+                </div>
+                <div class="note-tags">
+                    <input type="radio" id="school-radio-button" name="tagGroup" value="School"/>
+                    <label for="school-radio-button">School</label>
+
+                    <input type="radio" id="work-radio-button" name="tagGroup" value="Work" />
+                    <label for="work-radio-button">Work</label>
+
+                    <input type="radio" id="to-do-radio-button" name="tagGroup" value="To-do" />
+                    <label for="to-do-radio-button">To-do</label>
+
+                    <input type="radio" id="personal-radio-button" name="tagGroup" value="Personal" />
+                    <label for="personal-radio-button">Personal</label>
+                </div>
+            </div>
+            <div class="working-area">
+                <div class="list-of-notes">
+
+                </div>
+                <div class="opened-note">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
