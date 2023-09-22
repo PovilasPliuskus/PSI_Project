@@ -20,14 +20,6 @@ namespace SoftwareEngineeringProject.Controllers
             return View();
         }
 
-        public IActionResult CreateNote()
-        {
-            var testNote = new Note(value: "Hello");
-            var noteString = testNote.ToStringToSend();
-
-            return Content(noteString, "application/Json");
-        }
-
         public IActionResult Privacy()
         {
             return View();

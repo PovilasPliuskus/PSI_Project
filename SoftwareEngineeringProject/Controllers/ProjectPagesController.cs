@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoftwareEngineeringProject.NoteLibrary;
 
 namespace SoftwareEngineeringProject.Controllers
 {
@@ -7,6 +8,14 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult NotePage()
         {
             return View();
+        }
+
+        public IActionResult CreateNote()
+        {
+            var testNote = new Note(value: "Hello", name:"New Note");
+            var noteString = testNote.ToStringToSend();
+
+            return Content(noteString, "application/json");
         }
     }
 }

@@ -42,3 +42,18 @@
     border-left: none;
     width: 70%;
 }
+
+.note-button {
+    width: 100%;
+    height: 70px;
+    text-align: left;
+}
+
+.notes-name-span {
+    display: block;
+    font-weight: bold;
+}
+
+.notes-value-span {
+
+}

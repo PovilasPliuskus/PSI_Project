@@ -13,7 +13,7 @@
     <body>
         <div class="container">
             <div class="toolbar">
-                <button>Add Note</button>
+            <button id="addNoteButton">Add Note</button>
                 <button>Save Notes</button>
                 <div class="note-search-bar">
                     <form action="/Search", method ="get">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="working-area">
-                <div class="list-of-notes">
+                <div class="list-of-notes" id="listOfNotes">
 
                 </div>
                 <div class="opened-note">
@@ -43,5 +43,6 @@
                 </div>
             </div>
         </div>
+        <script src="~/js/AddNote.js" ></script>
     </body>
 </html>
