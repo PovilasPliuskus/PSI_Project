@@ -35,6 +35,8 @@
 .list-of-notes {
     border: 1px solid #000000;
     width: 30%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .opened-note {
