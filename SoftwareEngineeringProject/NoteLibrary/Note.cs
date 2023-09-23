@@ -40,6 +40,7 @@ namespace SoftwareEngineeringProject.NoteLibrary
         public NoteCategory Category
         {
             get { return _category; }
+            set { _columns = (int)value; }
         }
 
         public string GetId()
@@ -64,7 +65,7 @@ namespace SoftwareEngineeringProject.NoteLibrary
 
         public static List<Note> Notes {get;set;} = new List<Note>(); //property for holding multiple note class objects
         
-        public void SaveToFile(string filepath)
+        public static void SaveToFile(string filepath)
         {
             try
             {
@@ -134,6 +135,5 @@ namespace SoftwareEngineeringProject.NoteLibrary
                    $"\"category\": \"{Category}\"\n" +
                    "}";
         }
-
     }
 }
