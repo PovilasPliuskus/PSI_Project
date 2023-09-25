@@ -22,7 +22,7 @@ namespace SoftwareEngineeringProject.Controllers
         {
             var testNote = new Note(value: "Hello");
             var noteString = testNote.ToStringToSend();
-            Note.Notes.Add(testNote); //add new note object to list
+            NoteList.Notes.Add(testNote); //add new note object to list
             return Content(noteString, "application/Json"); //send note data to js file
         }
         public class TempNoteData //class used for storing note data on runtime
@@ -40,7 +40,7 @@ namespace SoftwareEngineeringProject.Controllers
             //change original note objects values to tempNotes values
             try
             {
-                foreach(var noteOriginal in Note.Notes)
+                foreach(var noteOriginal in NoteList.Notes)
                 {
                     foreach(var tempNote in tempNotes)
                     {
@@ -56,7 +56,7 @@ namespace SoftwareEngineeringProject.Controllers
                     }
                 }
                 //for debugging
-                foreach(var note in Note.Notes)
+                foreach(var note in NoteList.Notes)
                 {
                     Console.WriteLine($"Id: {note.GetId()}");
                     Console.WriteLine($"Name: {note.Name ?? "N/A"}"); // Use "N/A" if Name is null
@@ -68,7 +68,7 @@ namespace SoftwareEngineeringProject.Controllers
                     Console.WriteLine();
                 }
                 //actually save the notes to file
-                Note.SaveToFile("NoteLibrary/noteData.json");
+                SaveData.SaveToFile("NoteLibrary/noteData.json");
                 return Content("Notes saved successfully.", "text/plain");
             }
             catch (Exception ex)
