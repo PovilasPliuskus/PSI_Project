@@ -42,7 +42,11 @@ namespace SoftwareEngineeringProject.NoteLibrary
             get { return _category; }
             set { _columns = (int)value; }
         }
-
+        public NoteInformationRecord InformationRecord
+        {
+            get { return _information; }
+            set { _information = value; }
+        }
         public string GetId()
         {
             return _information.Id.ToString();
