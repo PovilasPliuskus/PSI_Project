@@ -23,7 +23,7 @@ namespace SoftwareEngineeringProject.Controllers
             var testNote = new Note(value: "Hello");
             var noteString = testNote.ToStringToSend();
             NoteList.Notes.Add(testNote); //add new note object to list
-            return Content(noteString, "application/Json"); //send note data to js file
+            return Content(noteString, "application/Json");
         }
         public class TempNoteData //class used for storing note data on runtime
         {
@@ -37,7 +37,6 @@ namespace SoftwareEngineeringProject.Controllers
         [HttpPost]
         public IActionResult SaveNote([FromBody] List<TempNoteData> tempNotes)
         {
-            //change original note objects values to tempNotes values
             try
             {
                 foreach(var noteOriginal in NoteList.Notes)
@@ -50,24 +49,10 @@ namespace SoftwareEngineeringProject.Controllers
                             noteOriginal.Value=tempNote.Value;
                             noteOriginal.Rows = tempNote.Rows;
                             noteOriginal.Columns=tempNote.Columns;
-                            //noteOriginal.Category=tempNote.Category; cant change it
                             break;
                         }
                     }
                 }
-                //for debugging
-                foreach(var note in NoteList.Notes)
-                {
-                    Console.WriteLine($"Id: {note.GetId()}");
-                    Console.WriteLine($"Name: {note.Name ?? "N/A"}"); // Use "N/A" if Name is null
-                    Console.WriteLine($"Value: {note.Value ?? "N/A"}"); // Use "N/A" if Value is null
-                    Console.WriteLine($"Rows: {note.Rows}");
-                    Console.WriteLine($"Columns: {note.Columns}");
-                    Console.WriteLine($"Category: {note.Category}");
-                    Console.WriteLine($"CreationDate: {note.GetCreationDate()}");
-                    Console.WriteLine();
-                }
-                //actually save the notes to file
                 SaveData.SaveToFile("NoteLibrary/noteData.json");
                 return Content("Notes saved successfully.", "text/plain");
             }

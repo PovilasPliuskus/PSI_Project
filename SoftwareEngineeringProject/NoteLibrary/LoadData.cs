@@ -14,8 +14,6 @@ namespace SoftwareEngineeringProject.NoteLibrary
                 using (StreamReader fileReader = File.OpenText(filePath))
                 {
                     var jsonString = fileReader.ReadToEnd();
-
-                    // Deserialize the entire Notes collection
                     Notes = JsonSerializer.Deserialize<List<Note>>(jsonString);
                 }
             }
