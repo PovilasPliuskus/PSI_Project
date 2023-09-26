@@ -1,35 +1,57 @@
 [
   {
     "Name": "New Note",
-    "Value": "wrrewer",
+    "Value": "Hello",
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-09-25T16:45:55.4814937+03:00",
+      "CreationDate": "2023-09-26T21:04:06.006538+03:00",
       "Id": 0
     }
   },
   {
     "Name": "New Note",
-    "Value": "97995",
+    "Value": "Hello",
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-09-25T16:45:55.813866+03:00",
+      "CreationDate": "2023-09-26T21:04:06.1397902+03:00",
       "Id": 1
     }
   },
   {
     "Name": "New Note",
-    "Value": "::DDDDDDDDD",
+    "Value": "Hello",
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-09-25T16:45:56.1618719+03:00",
+      "CreationDate": "2023-09-26T21:04:06.25917+03:00",
       "Id": 2
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-09-26T21:04:06.387599+03:00",
+      "Id": 3
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-09-26T21:04:06.5318994+03:00",
+      "Id": 4
     }
   }
 ]
