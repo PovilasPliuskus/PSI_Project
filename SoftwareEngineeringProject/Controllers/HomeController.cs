@@ -2,7 +2,6 @@
 using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.NoteLibrary;
 using System.Diagnostics;
-using System.Text.Json;
 
 namespace SoftwareEngineeringProject.Controllers
 {
@@ -14,12 +13,11 @@ namespace SoftwareEngineeringProject.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
+        
         }
-
         public IActionResult Privacy()
         {
             return View();
