@@ -1,4 +1,6 @@
-﻿namespace SoftwareEngineeringProject.NoteLibrary
+﻿using System.IO;
+using System.Text.Json;
+namespace SoftwareEngineeringProject.NoteLibrary
 {
     public record class NoteInformationRecord(DateTime CreationDate, int Id);
     public class Note
@@ -38,8 +40,13 @@
         public NoteCategory Category
         {
             get { return _category; }
+            set { _columns = (int)value; }
         }
-
+        public NoteInformationRecord InformationRecord
+        {
+            get { return _information; }
+            set { _information = value; }
+        }
         public string GetId()
         {
             return _information.Id.ToString();
@@ -59,7 +66,6 @@
             _columns = columns;
             _category = category;
         }
-
         public NoteInformationRecord CreateNoteInformationData()
         {
             DateTime CreationDate = DateTime.Now;
@@ -92,6 +98,5 @@
                    $"\"category\": \"{Category}\"\n" +
                    "}";
         }
-
     }
 }

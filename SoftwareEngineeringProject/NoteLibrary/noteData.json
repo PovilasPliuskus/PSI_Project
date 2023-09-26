@@ -1,0 +1,35 @@
+[
+  {
+    "Name": "New Note",
+    "Value": "wrrewer",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-09-25T16:45:55.4814937+03:00",
+      "Id": 0
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "97995",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-09-25T16:45:55.813866+03:00",
+      "Id": 1
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "::DDDDDDDDD",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-09-25T16:45:56.1618719+03:00",
+      "Id": 2
+    }
+  }
+]
