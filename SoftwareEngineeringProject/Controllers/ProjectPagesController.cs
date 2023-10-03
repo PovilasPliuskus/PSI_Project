@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineeringProject.NoteLibrary;
+using SoftwareEngineeringProject.Services;
 
 namespace SoftwareEngineeringProject.Controllers
 {
     public class ProjectPagesController : Controller
     {
+        private NoteService _noteService;
+
+        public ProjectPagesController(NoteService noteService)
+        {
+            _noteService = noteService;
+        }
+
         public IActionResult NotePage()
         {
             return View();
@@ -14,7 +22,7 @@ namespace SoftwareEngineeringProject.Controllers
         {
             var testNote = new Note(value: "Hello");
             var noteString = testNote.ToStringToSend();
-            NoteList.Notes.Add(testNote); //add new note object to list
+            _noteService.AddNote(testNote);
             return Content(noteString, "application/Json");
         }
 
@@ -28,12 +36,12 @@ namespace SoftwareEngineeringProject.Controllers
             public string Category { get; set; } = "";
         }
 
-        [HttpPost]
         public IActionResult SaveNote([FromBody] List<TempNoteData> tempNotes)
         {
+            List <Note> notes = _noteService.GetNotes();
             try
             {
-                foreach (var noteOriginal in NoteList.Notes)
+                foreach (var noteOriginal in notes)
                 {
                     foreach (var tempNote in tempNotes)
                     {
@@ -47,7 +55,9 @@ namespace SoftwareEngineeringProject.Controllers
                         }
                     }
                 }
-                SaveData.SaveToFile("NoteLibrary/noteData.json");
+
+                _noteService.SaveToFile("NoteLibrary/noteData.json", notes);
+
                 return Content("Notes saved successfully.", "text/plain");
             }
             catch (Exception ex)
