@@ -16,10 +16,9 @@ namespace SoftwareEngineeringProject.Services
                 {
                     var options = new JsonSerializerOptions
                     {
-                        WriteIndented = true // For pretty formatting in the JSON file
+                        WriteIndented = true
                     };
 
-                    // Serialize the entire Notes collection
                     var jsonString = JsonSerializer.Serialize(notes, options);
                     fileWriter.Write(jsonString);
                 }
@@ -27,6 +26,21 @@ namespace SoftwareEngineeringProject.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error saving notes: " + ex.Message);
+            }
+        }
+        public static void LoadFromFile(string filePath, List<Note> notes)
+        {
+            try
+            {
+                using (StreamReader fileReader = File.OpenText(filePath))
+                {
+                    var jsonString = fileReader.ReadToEnd();
+                    notes = JsonSerializer.Deserialize<List<Note>>(jsonString);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading notes: " + ex.Message);
             }
         }
 

@@ -6,7 +6,7 @@
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-10-03T12:37:56.2986284+03:00",
+      "CreationDate": "2023-10-06T21:55:01.19448+03:00",
       "Id": 0
     }
   },
@@ -17,7 +17,7 @@
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-10-03T12:37:56.4621464+03:00",
+      "CreationDate": "2023-10-06T21:55:01.3539977+03:00",
       "Id": 1
     }
   },
@@ -28,30 +28,8 @@
     "Columns": 100,
     "Category": 3,
     "InformationRecord": {
-      "CreationDate": "2023-10-03T12:37:56.5816352+03:00",
+      "CreationDate": "2023-10-06T21:55:01.5109792+03:00",
       "Id": 2
-    }
-  },
-  {
-    "Name": "New Note",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-10-03T12:37:56.7095957+03:00",
-      "Id": 3
-    }
-  },
-  {
-    "Name": "New Note",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-10-03T12:37:56.837626+03:00",
-      "Id": 4
     }
   }
 ]

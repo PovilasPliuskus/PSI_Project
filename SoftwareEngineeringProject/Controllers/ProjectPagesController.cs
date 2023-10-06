@@ -12,7 +12,6 @@ namespace SoftwareEngineeringProject.Controllers
         {
             _noteService = noteService;
         }
-
         public IActionResult NotePage()
         {
             return View();
@@ -25,17 +24,6 @@ namespace SoftwareEngineeringProject.Controllers
             _noteService.AddNote(testNote);
             return Content(noteString, "application/Json");
         }
-
-        public class TempNoteData //class used for storing note data on runtime
-        {
-            public int Id { get; set; }
-            public string Name { get; set; } = "";
-            public string Value { get; set; } = "";
-            public int Rows { get; set; }
-            public int Columns { get; set; }
-            public string Category { get; set; } = "";
-        }
-
         public IActionResult SaveNote([FromBody] List<TempNoteData> tempNotes)
         {
             List <Note> notes = _noteService.GetNotes();
