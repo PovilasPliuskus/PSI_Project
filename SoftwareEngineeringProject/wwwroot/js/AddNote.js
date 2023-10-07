@@ -22,10 +22,6 @@
 function createButton(data) {
     const button = document.createElement("button");
     button.id = data.id;
-    button.addEventListener("click", function () {
-        replaceTextHeader(document.getElementById("opened-notes-div"), data);
-        replaceTextarea(document.getElementById("opened-notes-div"), data);
-    });
 
     const notesNameSpan = document.createElement("span");
     const notesValueSpan = document.createElement("span");
@@ -34,56 +30,70 @@ function createButton(data) {
     button.classList.add("note-button");
     notesNameSpan.classList.add("notes-name-span");
 
+    const textareaContainer = document.getElementById("opened-notes-div");
+
+    const textarea = createTextarea(data, notesNameSpan, notesValueSpan);
+    const textHeader = createTextHeader(data, notesNameSpan, notesValueSpan);
+
     setNoteButtonContent(notesNameSpan, notesValueSpan, data);
+
+    button.addEventListener("click", function () {
+        replaceTextHeader(textareaContainer, data);
+        replaceTextarea(textareaContainer, data, notesNameSpan, notesValueSpan);
+    });
 
     return button;
 }
 
-function createTextarea(data) {
+function createTextarea(data, notesNameSpan, notesValueSpan) {
     const textarea = document.createElement("textarea");
     textarea.classList.add("note-textarea");
 
     // Add an event listener to update the 'value' property of 'data' on textarea change
     textarea.addEventListener("input", function () {
         data.value = textarea.value;
+        setNoteButtonContent(notesNameSpan, notesValueSpan, data);
     });
 
     return textarea;
 }
 
-function createTextHeader(data) {
+function createTextHeader(data, notesNameSpan, notesValueSpan) {
     const textHeader = document.createElement("input");
     textHeader.classList.add("note-text-header");
     textHeader.type = "text";
 
     textHeader.addEventListener("input", function () {
         data.name = textHeader.value;
+        setNoteButtonContent(notesNameSpan, notesValueSpan, data);
     });
 
     return textHeader;
 }
 
-function replaceTextarea(container, data) {
+function replaceTextarea(container, data, notesNameSpan, notesValueSpan) {
     const existingTextarea = container.querySelector(".note-textarea");
     if (existingTextarea) {
         container.removeChild(existingTextarea);
     }
-    const newTextarea = createTextarea(data); // Pass the 'data' object
+    const newTextarea = createTextarea(data, notesNameSpan, notesValueSpan);
     newTextarea.textContent = data.value;
     container.appendChild(newTextarea);
 }
 
-function replaceTextHeader(container, data) {
+function replaceTextHeader(container, data, notesNameSpan, notesValueSpan) {
     const existingTextHeader = container.querySelector(".note-text-header");
     if (existingTextHeader) {
         container.removeChild(existingTextHeader);
     }
-    const newTextHeader = createTextHeader(data); // Pass the 'data' object
+    const newTextHeader = createTextHeader(data, notesNameSpan, notesValueSpan);
     newTextHeader.value = data.name;
     container.appendChild(newTextHeader);
 }
 
 function setNoteButtonContent(notesNameSpan, notesValueSpan, data) {
-    notesNameSpan.textContent = data.name;
-    notesValueSpan.textContent = data.value;
+    if (notesNameSpan && notesValueSpan) {
+        notesNameSpan.textContent = data.name;
+        notesValueSpan.textContent = data.value;
+    }
 }

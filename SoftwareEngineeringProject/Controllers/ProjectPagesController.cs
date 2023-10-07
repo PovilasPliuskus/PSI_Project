@@ -21,7 +21,7 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult CreateNote()
         {
             var testNote = new Note(value: "Hello");
-/*            var noteString = testNote.ToStringToSend();*/
+            var noteString = testNote.ToStringToSend();
             _noteService.AddNote(testNote);
             return Json(testNote);
         }
