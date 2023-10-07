@@ -21,9 +21,9 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult CreateNote()
         {
             var testNote = new Note(value: "Hello");
-            var noteString = testNote.ToStringToSend();
+/*            var noteString = testNote.ToStringToSend();*/
             _noteService.AddNote(testNote);
-            return Content(noteString, "application/Json");
+            return Json(testNote);
         }
 
         public class TempNoteData //class used for storing note data on runtime
