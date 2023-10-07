@@ -1,8 +1,13 @@
-﻿document.getElementById("addNoteButton").addEventListener("click", function () {
-    console.log("Sveikas!");
+﻿const noteList = [];
+
+document.getElementById("addNoteButton").addEventListener("click", function () {
     fetch("/ProjectPages/CreateNote")
         .then(response => response.json())
         .then(data => {
+            // Add the received Note object to the noteList
+            noteList.push(data);
+            //printNoteList();
+
             const button = createButton(data);
             const textareaContainer = document.getElementById("opened-notes-div");
             replaceTextHeader(textareaContainer, data);
@@ -10,9 +15,9 @@
 
             document.getElementById("listOfNotes").appendChild(button);
 
-            button.addEventListener("click", function () {
+            /*button.addEventListener("click", function () {
                 console.log("Button clicked:", data);
-            });
+            });*/
         })
         .catch(error => {
             console.error("Error:", error);
@@ -96,4 +101,20 @@ function setNoteButtonContent(notesNameSpan, notesValueSpan, data) {
         notesNameSpan.textContent = data.name;
         notesValueSpan.textContent = data.value;
     }
+}
+
+
+function printNoteList() {
+    noteList.forEach(function (note) {
+        console.log("Note Creation Date: " + note.informationRecord.creationDate);
+        console.log("Note Information ID: " + note.informationRecord.id);
+        console.log("Note Name: " + note.name);
+        console.log("Note Value: " + note.value);
+        console.log("Note Rows: " + note.rows);
+        console.log("Note Columns: " + note.columns);
+        console.log("Note Category: " + note.category);
+
+
+        console.log("\n"); // Add a newline for separation
+    });
 }

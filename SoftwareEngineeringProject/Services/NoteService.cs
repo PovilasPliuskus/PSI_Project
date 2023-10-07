@@ -43,5 +43,15 @@ namespace SoftwareEngineeringProject.Services
                 note.ToString();
             }
         }
+
+        public void ReplaceNotes(List<Note> newNotes)
+        {
+            _notes.Clear();
+
+            // Add the new list of notes to the service
+            _notes.AddRange(newNotes);
+        }
+
+
     }
 }
