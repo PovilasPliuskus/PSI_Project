@@ -20,39 +20,30 @@ namespace SoftwareEngineeringProject.Controllers
         public IActionResult CreateNote()
         {
             var testNote = new Note(value: "Hello");
-            var noteString = testNote.ToStringToSend();
             _noteService.AddNote(testNote);
-            return Content(noteString, "application/Json");
+            return Json(testNote);
         }
-        public IActionResult SaveNote([FromBody] List<TempNoteData> tempNotes)
+
+        [HttpPost]
+        public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
         {
-            List <Note> notes = _noteService.GetNotes();
             try
             {
-                foreach (var noteOriginal in notes)
-                {
-                    foreach (var tempNote in tempNotes)
-                    {
-                        if (int.Parse(noteOriginal.GetId()) == tempNote.Id)
-                        {
-                            noteOriginal.Name = tempNote.Name;
-                            noteOriginal.Value = tempNote.Value;
-                            noteOriginal.Rows = tempNote.Rows;
-                            noteOriginal.Columns = tempNote.Columns;
-                            break;
-                        }
-                    }
-                }
+                // Replace the server-side list of notes with the client-side list
+                _noteService.ReplaceNotes(clientNotes);
+                _noteService.SaveToFile("NoteLibrary/noteData.json", _noteService.GetNotes());
 
-                _noteService.SaveToFile("NoteLibrary/noteData.json", notes);
-
-                return Content("Notes saved successfully.", "text/plain");
+                return Ok("Notes saved to server successfully.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error saving notes: " + ex.Message);
-                return Content("Error saving notes: " + ex.Message, "text/plain");
+                return BadRequest("Error saving notes to server: " + ex.Message);
             }
+        }
+        public IActionResult LoadNotes()
+        {
+                _noteService.LoadFromFile("NoteLibrary/noteData.json");
+                return Json(_noteService.GetNotes());
         }
     }
 }

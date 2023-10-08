@@ -28,14 +28,14 @@ namespace SoftwareEngineeringProject.Services
                 Console.WriteLine("Error saving notes: " + ex.Message);
             }
         }
-        public static void LoadFromFile(string filePath, List<Note> notes)
+        public void LoadFromFile(string filePath)
         {
             try
             {
                 using (StreamReader fileReader = File.OpenText(filePath))
                 {
                     var jsonString = fileReader.ReadToEnd();
-                    notes = JsonSerializer.Deserialize<List<Note>>(jsonString);
+                    _notes = JsonSerializer.Deserialize<List<Note>>(jsonString); //returns a list of notes from file
                 }
             }
             catch (Exception ex)
@@ -57,5 +57,15 @@ namespace SoftwareEngineeringProject.Services
                 note.ToString();
             }
         }
+
+        public void ReplaceNotes(List<Note> newNotes)
+        {
+            _notes.Clear();
+
+            // Add the new list of notes to the service
+            _notes.AddRange(newNotes);
+        }
+
+
     }
 }
