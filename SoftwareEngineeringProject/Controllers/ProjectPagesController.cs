@@ -41,5 +41,10 @@ namespace SoftwareEngineeringProject.Controllers
                 return BadRequest("Error saving notes to server: " + ex.Message);
             }
         }
+        public IActionResult LoadNotes()
+        {
+                _noteService.LoadFromFile("NoteLibrary/noteData.json");
+                return Json(_noteService.GetNotes());
+        }
     }
 }

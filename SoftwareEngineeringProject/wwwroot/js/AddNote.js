@@ -7,7 +7,6 @@ document.getElementById("addNoteButton").addEventListener("click", function () {
             // Add the received Note object to the noteList
             noteList.push(data);
             //printNoteList();
-
             const button = createButton(data);
             const textareaContainer = document.getElementById("opened-notes-div");
             replaceTextHeader(textareaContainer, data);

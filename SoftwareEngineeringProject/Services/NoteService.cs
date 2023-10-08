@@ -29,6 +29,21 @@ namespace SoftwareEngineeringProject.Services
                 Console.WriteLine("Error saving notes: " + ex.Message);
             }
         }
+        public void LoadFromFile(string filePath)
+        {
+            try
+            {
+                using (StreamReader fileReader = File.OpenText(filePath))
+                {
+                    var jsonString = fileReader.ReadToEnd();
+                    _notes = JsonSerializer.Deserialize<List<Note>>(jsonString); //returns a list of notes from file
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading notes: " + ex.Message);
+            }
+        }
 
         public void AddNote(Note note)
         {
