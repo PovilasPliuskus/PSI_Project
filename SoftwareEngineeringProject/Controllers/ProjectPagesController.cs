@@ -12,7 +12,6 @@ namespace SoftwareEngineeringProject.Controllers
         {
             _noteService = noteService;
         }
-
         public IActionResult NotePage()
         {
             return View();

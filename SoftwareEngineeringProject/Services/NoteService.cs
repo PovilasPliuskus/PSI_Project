@@ -16,10 +16,9 @@ namespace SoftwareEngineeringProject.Services
                 {
                     var options = new JsonSerializerOptions
                     {
-                        WriteIndented = true // For pretty formatting in the JSON file
+                        WriteIndented = true
                     };
 
-                    // Serialize the entire Notes collection
                     var jsonString = JsonSerializer.Serialize(notes, options);
                     fileWriter.Write(jsonString);
                 }
