@@ -1,4 +1,4 @@
-﻿const noteList = [];
+const noteList = [];
 
 document.getElementById("addNoteButton").addEventListener("click", function () {
     fetch("/ProjectPages/CreateNote")
@@ -94,14 +94,27 @@ function replaceTextHeader(container, data, notesNameSpan, notesValueSpan) {
     newTextHeader.value = data.name;
     container.appendChild(newTextHeader);
 }
-
+const maxLenght = 20;
 function setNoteButtonContent(notesNameSpan, notesValueSpan, data) {
     if (notesNameSpan && notesValueSpan) {
+
+        let limitText=''; //set it as string value for finding lenght
         notesNameSpan.textContent = data.name;
+        console.log(data.name);
+        limitText=notesNameSpan.textContent; //put textcontent in string value
+        notesNameSpan.textContent = limitTextLenght(limitText,maxLenght);
+
         notesValueSpan.textContent = data.value;
     }
 }
-
+function limitTextLenght(text,maxLenght)
+{
+    if(text.lenght>maxLenght)
+    {
+        return text.splice(0,maxLenght)+'...';
+    }
+    return text;
+}
 
 function printNoteList() {
     noteList.forEach(function (note) {
