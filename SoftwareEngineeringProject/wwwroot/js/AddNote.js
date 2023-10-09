@@ -94,26 +94,27 @@ function replaceTextHeader(container, data, notesNameSpan, notesValueSpan) {
     newTextHeader.value = data.name;
     container.appendChild(newTextHeader);
 }
-const maxLenght = 20;
+const maxLenght = 40; // the max lenght of characters displayed on note buttons
 function setNoteButtonContent(notesNameSpan, notesValueSpan, data) {
+    
     if (notesNameSpan && notesValueSpan) {
 
-        let limitText=''; //set it as string value for finding lenght
         notesNameSpan.textContent = data.name;
-        console.log(data.name);
-        limitText=notesNameSpan.textContent; //put textcontent in string value
-        notesNameSpan.textContent = limitTextLenght(limitText,maxLenght);
+        let text = String(notesNameSpan.textContent); //get the textcontent as String type
+        if(text.length>maxLenght) //checks if the text lenght is over the max lenght
+        {
+            text = text.slice(0,maxLenght)+'...'; //splice the text and replace the end with 3 dots
+        }
+        notesNameSpan.textContent = text;
 
         notesValueSpan.textContent = data.value;
+        text=String(notesValueSpan.textContent);
+        if(text.length>maxLenght)
+        {
+            text = text.slice(0,maxLenght)+'...';
+        }
+        notesValueSpan.textContent = text;
     }
-}
-function limitTextLenght(text,maxLenght)
-{
-    if(text.lenght>maxLenght)
-    {
-        return text.splice(0,maxLenght)+'...';
-    }
-    return text;
 }
 
 function printNoteList() {
