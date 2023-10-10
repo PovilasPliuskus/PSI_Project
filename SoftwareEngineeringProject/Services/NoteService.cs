@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace SoftwareEngineeringProject.Services
 {
-    public class NoteService
+    public class NoteService : INoteService
     {
         private List<Note> _notes = new List<Note>();
 

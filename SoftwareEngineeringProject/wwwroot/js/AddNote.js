@@ -1,4 +1,4 @@
-﻿const noteList = [];
+const noteList = [];
 
 document.getElementById("addNoteButton").addEventListener("click", function () {
     fetch("/ProjectPages/CreateNote")
@@ -13,10 +13,6 @@ document.getElementById("addNoteButton").addEventListener("click", function () {
             replaceTextarea(textareaContainer, data);
 
             document.getElementById("listOfNotes").appendChild(button);
-
-            /*button.addEventListener("click", function () {
-                console.log("Button clicked:", data);
-            });*/
         })
         .catch(error => {
             console.error("Error:", error);
@@ -94,14 +90,28 @@ function replaceTextHeader(container, data, notesNameSpan, notesValueSpan) {
     newTextHeader.value = data.name;
     container.appendChild(newTextHeader);
 }
-
+const maxLenght = 40; // the max lenght of characters displayed on note buttons
 function setNoteButtonContent(notesNameSpan, notesValueSpan, data) {
+    
     if (notesNameSpan && notesValueSpan) {
+
         notesNameSpan.textContent = data.name;
+        let text = String(notesNameSpan.textContent); //get the textcontent as String type
+        if(text.length>maxLenght) //checks if the text lenght is over the max lenght
+        {
+            text = text.slice(0,maxLenght)+'...'; //splice the text and replace the end with 3 dots
+        }
+        notesNameSpan.textContent = text;
+
         notesValueSpan.textContent = data.value;
+        text=String(notesValueSpan.textContent);
+        if(text.length>maxLenght)
+        {
+            text = text.slice(0,maxLenght)+'...';
+        }
+        notesValueSpan.textContent = text;
     }
 }
-
 
 function printNoteList() {
     noteList.forEach(function (note) {

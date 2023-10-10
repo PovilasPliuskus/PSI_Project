@@ -45,5 +45,47 @@ namespace SoftwareEngineeringProject.Controllers
                 _noteService.LoadFromFile("NoteLibrary/noteData.json");
                 return Json(_noteService.GetNotes());
         }
+
+        [HttpPost]
+        public IActionResult SortNotes(string sortOption)
+        {
+            NoteComparer comparer = null;
+            List<Note> notes = new List<Note>();
+            notes = _noteService.GetNotes();
+
+            switch (sortOption)
+            {
+                case "nameAsc":
+                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    break;
+                case "nameDesc":
+                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    break;
+                case "creationDateAsc":
+                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    break;
+                case "creationDateDesc":
+                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    break;
+                default:
+                    break;
+            }
+
+            if (comparer != null)
+            {
+                if (sortOption.EndsWith("Asc"))
+                {
+                    notes = notes.OrderBy(note => note, comparer).ToList();
+                    _noteService.ReplaceNotes(notes);
+                }
+                else if (sortOption.EndsWith("Desc"))
+                {
+                    notes = notes.OrderByDescending(note => note, comparer).ToList();
+                    _noteService.ReplaceNotes(notes);
+                }
+            }
+
+            return Json(_noteService.GetNotes());
+        }
     }
 }
