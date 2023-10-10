@@ -13,10 +13,6 @@ document.getElementById("addNoteButton").addEventListener("click", function () {
             replaceTextarea(textareaContainer, data);
 
             document.getElementById("listOfNotes").appendChild(button);
-
-            /*button.addEventListener("click", function () {
-                console.log("Button clicked:", data);
-            });*/
         })
         .catch(error => {
             console.error("Error:", error);
