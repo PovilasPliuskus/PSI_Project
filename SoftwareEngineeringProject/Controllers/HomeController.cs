@@ -15,7 +15,7 @@ namespace SoftwareEngineeringProject.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("~/Views/Home/Landing.cshtml");
         
         }
         public IActionResult Privacy()
