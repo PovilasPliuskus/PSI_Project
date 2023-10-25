@@ -11,6 +11,28 @@
     }
   },
   {
+    "Name": "The Truth",
+    "Value": "My life is a lie.",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-07T21:41:21.5717763+03:00",
+      "Id": 6
+    }
+  },
+  {
+    "Name": "PEOPLE",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-07T21:41:21.398379+03:00",
+      "Id": 5
+    }
+  },
+  {
     "Name": "Mental abuse7777777777777777777fffff77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777",
     "Value": "You know how some people say that math is \u201Cmental abuse to humans\u201D? Well, lemme tell you one thing: \u201CMath\u201D is an abbreviation for \u201Cmathematics\u201D, so you\u2019re only looking at 36% of the whole thing. What does the other 64% stand for? It stands for \u201Cexcept mostly at truly intelligently cool students\u201D! That means, if you think math is mentally abusing you, you\u2019re not truly intelligent or cool! You\u2019re dumb and lame! So the next time someone gives you the first 36% of this ridiculous acronym, give them the other 64%. Don\u2019t forget to tell them that they suck at etymology.You know how some people say that math is \u201Cmental abuse to humans\u201D? Well, lemme tell you one thing: \u201CMath\u201D is an abbreviation for \u201Cmathematics\u201D, so you\u2019re only looking at 36% of the whole thing. What does the other 64% stand for? It stands for \u201Cexcept mostly at truly intelligently cool students\u201D! That means, if you think math is mentally abusing you, you\u2019re not truly intelligent or cool! You\u2019re dumb and lame! So the next time someone gives you the first 36% of this ridiculous acronym, give them the other 64%. Don\u2019t forget to tell them that they suck at etymology.You know how some people say that math is \u201Cmental abuse to humans\u201D? Well, lemme tell you one thing: \u201CMath\u201D is an abbreviation for \u201Cmathematics\u201D, so you\u2019re only looking at 36% of the whole thing. What does the other 64% stand for? It stands for \u201Cexcept mostly at truly intelligently cool students\u201D! That means, if you think math is mentally abusing you, you\u2019re not truly intelligent or cool! You\u2019re dumb and lame! So the next time someone gives you the first 36% of this ridiculous acronym, give them the other 64%. Don\u2019t forget to tell them that they suck at etymology.",
     "Rows": 10,
@@ -30,28 +52,6 @@
     "InformationRecord": {
       "CreationDate": "2023-10-07T21:41:21.9091232+03:00",
       "Id": 8
-    }
-  },
-  {
-    "Name": "PEOPLE",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-10-07T21:41:21.398379+03:00",
-      "Id": 5
-    }
-  },
-  {
-    "Name": "The Truth",
-    "Value": "My life is a lie.",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-10-07T21:41:21.5717763+03:00",
-      "Id": 6
     }
   },
   {
@@ -85,6 +85,50 @@
     "InformationRecord": {
       "CreationDate": "2023-10-10T14:08:42.4745552+03:00",
       "Id": 9
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-11T18:03:44.7366125+03:00",
+      "Id": 8
+    }
+  },
+  {
+    "Name": "Pavyzdys",
+    "Value": "Naujas pavyzdys\n\nTo do:\n\n",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-16T17:38:55.3158059+03:00",
+      "Id": 9
+    }
+  },
+  {
+    "Name": "Pavadinimas",
+    "Value": "sdksjbfkjsdbkfbsdkfjbsdfkjfkjfdkk",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-18T18:52:50.1755898+03:00",
+      "Id": 10
+    }
+  },
+  {
+    "Name": "",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-18T18:53:52.7821238+03:00",
+      "Id": 22
     }
   }
 ]

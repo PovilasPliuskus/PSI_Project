@@ -5,11 +5,8 @@ namespace SoftwareEngineeringProject.NoteLibrary
     public class NoteComparer : IComparer<Note>
     {
         private readonly ComparisonType _comparisonType;
-        public enum ComparisonType
-        {
-            Name,
-            CreationDate
-        }
+        // atskiras failas
+
 
         public NoteComparer(ComparisonType comparisonType)
         {

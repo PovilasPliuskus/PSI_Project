@@ -4,6 +4,7 @@ using SoftwareEngineeringProject.Services;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    // Notes Controller
     public class ProjectPagesController : Controller
     {
         private NoteService _noteService;
@@ -32,6 +33,7 @@ namespace SoftwareEngineeringProject.Controllers
                 // Replace the server-side list of notes with the client-side list
                 _noteService.ReplaceNotes(clientNotes);
                 _noteService.SaveToFile("NoteLibrary/noteData.json", _noteService.GetNotes());
+                _noteService.PrintNotesWordCount();
 
                 return Ok("Notes saved to server successfully.");
             }
@@ -56,16 +58,16 @@ namespace SoftwareEngineeringProject.Controllers
             switch (sortOption)
             {
                 case "nameAsc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    comparer = new NoteComparer(ComparisonType.Name);
                     break;
                 case "nameDesc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    comparer = new NoteComparer(ComparisonType.Name);
                     break;
                 case "creationDateAsc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    comparer = new NoteComparer(ComparisonType.CreationDate);
                     break;
                 case "creationDateDesc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    comparer = new NoteComparer(ComparisonType.CreationDate);
                     break;
                 default:
                     break;
