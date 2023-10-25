@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftwareEngineeringProject.Models;
-using SoftwareEngineeringProject.NoteLibrary;
 using System.Diagnostics;
 
 namespace SoftwareEngineeringProject.Controllers

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoftwareEngineeringProject.NoteLibrary;
+using SoftwareEngineeringProject.Enums;
+using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.Services;
 
 namespace SoftwareEngineeringProject.Controllers
@@ -32,7 +33,7 @@ namespace SoftwareEngineeringProject.Controllers
             {
                 // Replace the server-side list of notes with the client-side list
                 _noteService.ReplaceNotes(clientNotes);
-                _noteService.SaveToFile("NoteLibrary/noteData.json", _noteService.GetNotes());
+                _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
                 _noteService.PrintNotesWordCount();
 
                 return Ok("Notes saved to server successfully.");
@@ -44,7 +45,7 @@ namespace SoftwareEngineeringProject.Controllers
         }
         public IActionResult LoadNotes()
         {
-                _noteService.LoadFromFile("NoteLibrary/noteData.json");
+                _noteService.LoadFromFile("Data/noteData.json");
                 return Json(_noteService.GetNotes());
         }
 

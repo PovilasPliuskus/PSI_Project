@@ -1,4 +1,4 @@
-﻿namespace SoftwareEngineeringProject.NoteLibrary
+﻿namespace SoftwareEngineeringProject.Enums
 {
     public enum ComparisonType
     {

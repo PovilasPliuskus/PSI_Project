@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using SoftwareEngineeringProject.Enums;
+using SoftwareEngineeringProject.Models;
 
-namespace SoftwareEngineeringProject.NoteLibrary
+namespace SoftwareEngineeringProject.Models
 {
     public class NoteComparer : IComparer<Note>
     {

@@ -1,4 +1,4 @@
-﻿using SoftwareEngineeringProject.NoteLibrary;
+﻿using SoftwareEngineeringProject.Models;
 using System.Collections.Generic;
 
 namespace SoftwareEngineeringProject.Services

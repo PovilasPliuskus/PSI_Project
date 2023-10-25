@@ -130,5 +130,16 @@
       "CreationDate": "2023-10-18T18:53:52.7821238+03:00",
       "Id": 22
     }
+  },
+  {
+    "Name": "This was created the last Note",
+    "Value": "Checking if files are working",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "InformationRecord": {
+      "CreationDate": "2023-10-25T11:15:54.4160066+03:00",
+      "Id": 12
+    }
   }
 ]

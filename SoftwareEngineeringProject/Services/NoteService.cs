@@ -1,6 +1,6 @@
-﻿using SoftwareEngineeringProject.NoteLibrary;
-using System.Text.Json;
+﻿using System.Text.Json;
 using SoftwareEngineeringProject.Extensions;
+using SoftwareEngineeringProject.Models;
 
 namespace SoftwareEngineeringProject.Services
 {

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text.Json;
-namespace SoftwareEngineeringProject.NoteLibrary
+using SoftwareEngineeringProject.Enums;
+namespace SoftwareEngineeringProject.Models
 {
     public record class NoteInformationRecord(DateTime CreationDate, int Id);
     public class Note
