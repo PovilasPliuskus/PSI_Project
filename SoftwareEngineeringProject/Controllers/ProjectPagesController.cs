@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoftwareEngineeringProject.NoteLibrary;
+using SoftwareEngineeringProject.Enums;
+using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.Services;
 
 namespace SoftwareEngineeringProject.Controllers
 {
+    // Notes Controller
     public class ProjectPagesController : Controller
     {
         private NoteService _noteService;
@@ -31,7 +33,8 @@ namespace SoftwareEngineeringProject.Controllers
             {
                 // Replace the server-side list of notes with the client-side list
                 _noteService.ReplaceNotes(clientNotes);
-                _noteService.SaveToFile("NoteLibrary/noteData.json", _noteService.GetNotes());
+                _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
+                _noteService.PrintNotesWordCount();
 
                 return Ok("Notes saved to server successfully.");
             }
@@ -42,7 +45,7 @@ namespace SoftwareEngineeringProject.Controllers
         }
         public IActionResult LoadNotes()
         {
-                _noteService.LoadFromFile("NoteLibrary/noteData.json");
+                _noteService.LoadFromFile("Data/noteData.json");
                 return Json(_noteService.GetNotes());
         }
 
@@ -56,16 +59,16 @@ namespace SoftwareEngineeringProject.Controllers
             switch (sortOption)
             {
                 case "nameAsc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    comparer = new NoteComparer(ComparisonType.Name);
                     break;
                 case "nameDesc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.Name);
+                    comparer = new NoteComparer(ComparisonType.Name);
                     break;
                 case "creationDateAsc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    comparer = new NoteComparer(ComparisonType.CreationDate);
                     break;
                 case "creationDateDesc":
-                    comparer = new NoteComparer(NoteComparer.ComparisonType.CreationDate);
+                    comparer = new NoteComparer(ComparisonType.CreationDate);
                     break;
                 default:
                     break;

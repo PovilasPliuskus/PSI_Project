@@ -1,15 +1,14 @@
 ﻿using System.Collections;
+using SoftwareEngineeringProject.Enums;
+using SoftwareEngineeringProject.Models;
 
-namespace SoftwareEngineeringProject.NoteLibrary
+namespace SoftwareEngineeringProject.Models
 {
     public class NoteComparer : IComparer<Note>
     {
         private readonly ComparisonType _comparisonType;
-        public enum ComparisonType
-        {
-            Name,
-            CreationDate
-        }
+        // atskiras failas
+
 
         public NoteComparer(ComparisonType comparisonType)
         {

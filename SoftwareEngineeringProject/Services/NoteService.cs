@@ -1,5 +1,6 @@
-﻿using SoftwareEngineeringProject.NoteLibrary;
-using System.Text.Json;
+﻿using System.Text.Json;
+using SoftwareEngineeringProject.Extensions;
+using SoftwareEngineeringProject.Models;
 
 namespace SoftwareEngineeringProject.Services
 {
@@ -8,7 +9,7 @@ namespace SoftwareEngineeringProject.Services
         private List<Note> _notes = new List<Note>();
 
         public List<Note> GetNotes() { return _notes; }
-        public void SaveToFile(string filepath, List<Note> notes)
+        public void SaveToFile<T>(string filepath, List<T> items)
         {
             try
             {
@@ -19,7 +20,7 @@ namespace SoftwareEngineeringProject.Services
                         WriteIndented = true
                     };
 
-                    var jsonString = JsonSerializer.Serialize(notes, options);
+                    var jsonString = JsonSerializer.Serialize(items, options);
                     fileWriter.Write(jsonString);
                 }
             }
@@ -64,6 +65,14 @@ namespace SoftwareEngineeringProject.Services
 
             // Add the new list of notes to the service
             _notes.AddRange(newNotes);
+        }
+
+        public void PrintNotesWordCount()
+        {
+            foreach(Note note in _notes)
+            {
+                Console.WriteLine(note.Value.WordCount());
+            }
         }
 
 

@@ -1,4 +1,4 @@
-﻿using SoftwareEngineeringProject.NoteLibrary;
+﻿using SoftwareEngineeringProject.Models;
 using System.Collections.Generic;
 
 namespace SoftwareEngineeringProject.Services
@@ -6,7 +6,7 @@ namespace SoftwareEngineeringProject.Services
     public interface INoteService
     {
         List<Note> GetNotes();
-        void SaveToFile(string filepath, List<Note> notes);
+        public void SaveToFile<T>(string filepath, List<T> items);
         void LoadFromFile(string filePath);
         void AddNote(Note note);
         void PrintList();

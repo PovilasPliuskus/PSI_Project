@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - SoftwareEngineeringProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/navbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Navbar.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 
 </head>
@@ -27,10 +27,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-signup-link" asp-area="" asp-controller="" asp-action="">Sign up</a>
+                        <a class="nav-signup-link" asp-area="" asp-controller="Home" asp-action="Signup">Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-login-link" asp-area="" asp-controller="" asp-action="">Log in</a>
+                        <a class="nav-login-link" asp-area="" asp-controller="Home" asp-action="Login">Log in</a>
                     </li>
                 </ul>
             </div>
@@ -40,11 +40,9 @@
         <main role="main" class="pb-3">
                 @RenderBody()
         </main>
-    </div>>
-       
-    <footer class="border-top footer text-muted">
+    </div>
+
         @RenderSection("Footer", false)
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
