@@ -1,55 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Notes</title>
-        <link rel="stylesheet" type="text/css" href="/css/NotePagesStyles.css">
-    </head>
-    <body>
-        <div class="container">
-            <div class="toolbar">
-            <button id="addNoteButton">Add Note</button>
-            <button id="saveNoteButton">Save Notes</button>
-            <button id="sortByNameAsc">Sort By Name Ascending</button>
-            <button id="sortByNameDesc">Sort By Name Descending</button>
-            <button id="sortByDateAsc">Sort By Date Ascending</button>
-            <button id="sortByDateDesc">Sort By Date Descending</button>
-@*                 <div class="note-search-bar">
-                    <form action="/Search", method ="get">
-                        <input type="text" name="query" placeholder="Search..." autocomplete="off"/>
-                    </form>
-                </div> *@
-                <div class="note-tags">
-                    <input type="radio" id="school-radio-button" name="tagGroup" value="School"/>
-                    <label for="school-radio-button">School</label>
+@section Styles {
 
-                    <input type="radio" id="work-radio-button" name="tagGroup" value="Work" />
-                    <label for="work-radio-button">Work</label>
+    <link rel="stylesheet" type="text/css" href="/css/NotePagesStyles.css">
+}
 
-                    <input type="radio" id="to-do-radio-button" name="tagGroup" value="To-do" />
-                    <label for="to-do-radio-button">To-do</label>
+<div class="container">
+    <div class="toolbar">
+        <button id="addNoteButton">Add Note</button>
+        <button id="saveNoteButton">Save Notes</button>
+        <button id="sortByNameAsc">Sort By Name Ascending</button>
+        <button id="sortByNameDesc">Sort By Name Descending</button>
+        <button id="sortByDateAsc">Sort By Date Ascending</button>
+        <button id="sortByDateDesc">Sort By Date Descending</button>
+        @*                 <div class="note-search-bar">
+        <form action="/Search", method ="get">
+        <input type="text" name="query" placeholder="Search..." autocomplete="off"/>
+        </form>
+        </div> *@
+        <div class="note-tags">
+            <input type="radio" id="school-radio-button" name="tagGroup" value="School" />
+            <label for="school-radio-button">School</label>
 
-                    <input type="radio" id="personal-radio-button" name="tagGroup" value="Personal" />
-                    <label for="personal-radio-button">Personal</label>
-                </div>
-            </div>
-            <div class="working-area">
-                <div class="list-of-notes" id="listOfNotes">
+            <input type="radio" id="work-radio-button" name="tagGroup" value="Work" />
+            <label for="work-radio-button">Work</label>
 
-                </div>
-                <div class="opened-note" id="opened-notes-div">
+            <input type="radio" id="to-do-radio-button" name="tagGroup" value="To-do" />
+            <label for="to-do-radio-button">To-do</label>
 
-                </div>
-            </div>
+            <input type="radio" id="personal-radio-button" name="tagGroup" value="Personal" />
+            <label for="personal-radio-button">Personal</label>
         </div>
-        <script src="~/js/AddNote.js"></script>
-        <script src="~/js/SaveNotesToFile.js"></script>
-        <script src="~/js/LoadNotesFromFile.js"></script>
-        <script src="~/js/SortNotes.js"></script>
-    </body>
-</html>
+    </div>
+    <div class="working-area">
+        <div class="list-of-notes" id="listOfNotes">
+
+        </div>
+        <div class="opened-note" id="opened-notes-div">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/AddNote.js"></script>
+    <script src="~/js/SaveNotesToFile.js"></script>
+    <script src="~/js/LoadNotesFromFile.js"></script>
+    <script src="~/js/SortNotes.js"></script>
+}
