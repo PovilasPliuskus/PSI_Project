@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// AddScoped
 builder.Services.AddSingleton<NoteService>();
 
 var app = builder.Build();
