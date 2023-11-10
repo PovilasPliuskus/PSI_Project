@@ -9,6 +9,7 @@ namespace SoftwareEngineeringProject.Controllers
     public class ProjectPagesController : Controller
     {
         private NoteService _noteService;
+        // private readonly interface (repo dar)
 
         public ProjectPagesController(NoteService noteService)
         {
