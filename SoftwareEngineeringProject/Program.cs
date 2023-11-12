@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
+using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.Services;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // AddScoped
 builder.Services.AddSingleton<NoteService>();
+
+builder.Services.AddDbContext<NoteContext>(options =>
+{
+    options.UseSqlServer("Server = tcp:psiserver.database.windows.net, 1433; Initial Catalog = PSIProject; Persist Security Info = False; User ID = serveradmin; Password =SunkusSlaptazodis123+; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+});
 
 var app = builder.Build();
 

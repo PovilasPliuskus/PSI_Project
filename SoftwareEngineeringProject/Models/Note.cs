@@ -1,12 +1,12 @@
-﻿using System.IO;
+﻿using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Text.Json;
 using SoftwareEngineeringProject.Enums;
 namespace SoftwareEngineeringProject.Models
 {
-    public record class NoteInformationRecord(DateTime CreationDate, int Id);
+    public record class NoteInformationRecord(DateTime CreationDate, Guid Id);
     public class Note
     {
-        private static int _idNumber = 0;
         private String _name;
         private String _value;
         private NoteInformationRecord _information;
@@ -43,7 +43,16 @@ namespace SoftwareEngineeringProject.Models
             get { return _category; }
             set { _columns = (int)value; }
         }
-        public NoteInformationRecord InformationRecord
+
+        [Key]
+
+        public Guid Id 
+        {
+            get { return _information.Id; }
+            private set { }
+        }
+
+        public NoteInformationRecord Information
         {
             get { return _information; }
             set { _information = value; }
@@ -70,7 +79,7 @@ namespace SoftwareEngineeringProject.Models
         public NoteInformationRecord CreateNoteInformationData()
         {
             DateTime CreationDate = DateTime.Now;
-            int Id = _idNumber++;
+            Guid Id = Guid.NewGuid();
 
             return new NoteInformationRecord(CreationDate, Id);
         }
