@@ -11,5 +11,7 @@ namespace SoftwareEngineeringProject.Services
         void AddNote(Note note);
         void PrintList();
         void ReplaceNotes(List<Note> newNotes);
+        public bool NoteExists(Guid noteId);
+        public void UpdateNote(Note updatedNote);
     }
 }

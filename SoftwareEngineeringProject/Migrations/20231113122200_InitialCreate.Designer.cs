@@ -12,7 +12,7 @@ using SoftwareEngineeringProject.Models;
 namespace SoftwareEngineeringProject.Migrations
 {
     [DbContext(typeof(NoteContext))]
-    [Migration("20231112231846_InitialCreate")]
+    [Migration("20231113122200_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

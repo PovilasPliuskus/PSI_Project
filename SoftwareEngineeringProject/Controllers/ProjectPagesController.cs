@@ -31,18 +31,48 @@ namespace SoftwareEngineeringProject.Controllers
         {
             try
             {
-                // Replace the server-side list of notes with the client-side list
-                _noteService.ReplaceNotes(clientNotes);
-                _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
-                _noteService.PrintList();
+                // Loop through the client-side list and add or update each note in the database
+                foreach (var note in clientNotes)
+                {
+                    if (_noteService.NoteExists(note.Id))
+                    {
+                        // Note with the same ID exists, update it with the new values
+                        _noteService.UpdateNote(note);
+                    }
+                    else
+                    {
+                        // Note with the same ID doesn't exist, add the new note
+                        _noteService.AddNote(note);
+                    }
+                }
 
-                return Ok("Notes saved to server successfully.");
+                _noteService.PrintList(); // Print the list (optional)
+
+                return Ok("Notes saved to the database successfully.");
             }
             catch (Exception ex)
             {
-                return BadRequest("Error saving notes to server: " + ex.Message);
+                return BadRequest("Error saving notes to the database: " + ex.Message);
             }
         }
+
+        /*        [HttpPost]
+                public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
+                {
+                    try
+                    {
+                        // Replace the server-side list of notes with the client-side list
+                        _noteService.ReplaceNotes(clientNotes);
+                        _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
+                        _noteService.PrintList();
+
+                        return Ok("Notes saved to server successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest("Error saving notes to server: " + ex.Message);
+                    }
+                }*/
         public IActionResult LoadNotes()
         {
                 _noteService.LoadFromFile("Data/noteData.json");
