@@ -12,7 +12,7 @@ using SoftwareEngineeringProject.Models;
 namespace SoftwareEngineeringProject.Migrations
 {
     [DbContext(typeof(NoteContext))]
-    [Migration("20231113122200_InitialCreate")]
+    [Migration("20231113171314_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,18 +34,9 @@ namespace SoftwareEngineeringProject.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
-                    b.Property<int>("Columns")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("InformationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rows")
-                        .HasColumnType("int");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -53,34 +44,7 @@ namespace SoftwareEngineeringProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InformationId");
-
                     b.ToTable("Notes");
-                });
-
-            modelBuilder.Entity("SoftwareEngineeringProject.Models.NoteInformationRecord", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NoteInformationRecord");
-                });
-
-            modelBuilder.Entity("SoftwareEngineeringProject.Models.Note", b =>
-                {
-                    b.HasOne("SoftwareEngineeringProject.Models.NoteInformationRecord", "Information")
-                        .WithMany()
-                        .HasForeignKey("InformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Information");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,5 +13,6 @@ namespace SoftwareEngineeringProject.Services
         void ReplaceNotes(List<Note> newNotes);
         public bool NoteExists(Guid noteId);
         public void UpdateNote(Note updatedNote);
+        public List<Note> GetNotesFromDatabase();
     }
 }

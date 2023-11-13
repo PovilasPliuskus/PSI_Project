@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SoftwareEngineeringProject.Enums;
 using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.Services;
@@ -31,13 +32,19 @@ namespace SoftwareEngineeringProject.Controllers
         {
             try
             {
-                // Loop through the client-side list and add or update each note in the database
+                // Get the list of existing notes from the database
+                List<Note> existingNotes = _noteService.GetNotesFromDatabase();
+
                 foreach (var note in clientNotes)
                 {
-                    if (_noteService.NoteExists(note.Id))
+                    var existingNote = existingNotes.FirstOrDefault(n => n.Id == note.Id);
+
+                    if (existingNote != null)
                     {
                         // Note with the same ID exists, update it with the new values
-                        _noteService.UpdateNote(note);
+                        existingNote.Name = note.Name;
+                        existingNote.Value = note.Value;
+                        _noteService.UpdateNote(existingNote);
                     }
                     else
                     {
@@ -45,6 +52,8 @@ namespace SoftwareEngineeringProject.Controllers
                         _noteService.AddNote(note);
                     }
                 }
+
+                // After processing all clientNotes, you may want to clean up the database by removing notes that are no longer in the clientNotes list. This depends on your requirements.
 
                 _noteService.PrintList(); // Print the list (optional)
 
@@ -56,28 +65,24 @@ namespace SoftwareEngineeringProject.Controllers
             }
         }
 
-        /*        [HttpPost]
-                public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
-                {
-                    try
-                    {
-                        // Replace the server-side list of notes with the client-side list
-                        _noteService.ReplaceNotes(clientNotes);
-                        _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
-                        _noteService.PrintList();
-
-                        return Ok("Notes saved to server successfully.");
-                    }
-                    catch (Exception ex)
-                    {
-                        return BadRequest("Error saving notes to server: " + ex.Message);
-                    }
-                }*/
         public IActionResult LoadNotes()
         {
-                _noteService.LoadFromFile("Data/noteData.json");
-                return Json(_noteService.GetNotes());
+            try
+            {
+                List<Note> notes = _noteService.GetNotesFromDatabase();
+                return Json(notes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error loading notes from the database: " + ex.Message);
+            }
         }
+
+        /*        public IActionResult LoadNotes()
+                {
+                    _noteService.LoadFromFile("Data/noteData.json");
+                    return Json(_noteService.GetNotes());
+                }*/
 
         [HttpPost]
         public IActionResult SortNotes(string sortOption)

@@ -93,9 +93,6 @@ namespace SoftwareEngineeringProject.Services
 
             if (existingNote != null)
             {
-                // Reload the existing note from the database
-                _context.Entry(existingNote).Reload();
-
                 // Update the existing note with the new values
                 existingNote.Name = updatedNote.Name;
                 existingNote.Value = updatedNote.Value;
@@ -103,6 +100,11 @@ namespace SoftwareEngineeringProject.Services
                 // Save changes to the database
                 _context.SaveChanges();
             }
+        }
+
+        public List<Note> GetNotesFromDatabase()
+        {
+            return _context.Notes.ToList();
         }
     }
 }
