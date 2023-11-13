@@ -8,10 +8,9 @@ namespace SoftwareEngineeringProject.Controllers
     // Notes Controller
     public class ProjectPagesController : Controller
     {
-        private NoteService _noteService;
-        // private readonly interface (repo dar)
+        private readonly INoteService _noteService;
 
-        public ProjectPagesController(NoteService noteService)
+        public ProjectPagesController(INoteService noteService)
         {
             _noteService = noteService;
         }
@@ -35,7 +34,7 @@ namespace SoftwareEngineeringProject.Controllers
                 // Replace the server-side list of notes with the client-side list
                 _noteService.ReplaceNotes(clientNotes);
                 _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
-                _noteService.PrintNotesWordCount();
+                _noteService.PrintList();
 
                 return Ok("Notes saved to server successfully.");
             }
