@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // AddScoped
-builder.Services.AddSingleton<NoteService>();
+builder.Services.AddScoped<INoteService, NoteService>();
 
 builder.Services.AddDbContext<NoteContext>(options =>
 {

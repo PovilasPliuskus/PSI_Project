@@ -10,12 +10,12 @@ namespace SoftwareEngineeringProject.Models
         {
             
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+/*        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Note>()
                 .HasKey(n => n.Id);
-        }
+        }*/
     }
 }

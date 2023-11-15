@@ -5,42 +5,10 @@
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T00:43:02.2751238+02:00",
-      "Id": "ef2ebf35-3f1b-454b-b978-e654f1bb6e34"
-    }
-  },
-  {
-    "Name": "B",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T00:43:02.4108725+02:00",
-      "Id": "c75ae487-1a2b-4625-b881-40f5d88b4f62"
-    }
-  },
-  {
-    "Name": "New Note",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T00:43:02.5473864+02:00",
-      "Id": "8d3d9926-deee-44f3-a0a4-695a95761e61"
-    }
-  },
-  {
-    "Name": "New Note",
-    "Value": "Hello",
-    "Rows": 10,
-    "Columns": 100,
-    "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T00:43:01.9075197+02:00",
-      "Id": "baf316ce-f56c-4f29-9fb1-8a746e25c28d"
+    "Id": "fa982b49-759c-4fcd-ba45-4453b6cd8e35",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7339883+02:00",
+      "Id": "fa982b49-759c-4fcd-ba45-4453b6cd8e35"
     }
   },
   {
@@ -49,9 +17,22 @@
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T00:42:59.1968039+02:00",
-      "Id": "23ff6c32-837c-4f08-8a9c-ab0f57e8f6f7"
+    "Id": "21858b1a-3ad5-4401-98fe-55b46ca03b4f",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7342867+02:00",
+      "Id": "21858b1a-3ad5-4401-98fe-55b46ca03b4f"
+    }
+  },
+  {
+    "Name": "B",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "Id": "3b7e47b6-a466-40db-b8e7-4fcc9ce60952",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7342674+02:00",
+      "Id": "3b7e47b6-a466-40db-b8e7-4fcc9ce60952"
     }
   },
   {
@@ -60,9 +41,58 @@
     "Rows": 10,
     "Columns": 100,
     "Category": 3,
-    "InformationRecord": {
-      "CreationDate": "2023-11-13T01:02:29.8526276+02:00",
-      "Id": "678e98a1-8714-4565-b418-7e628a91e9cf"
+    "Id": "8e3b7a5f-91a0-483e-ab95-9ba6595e4696",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7342768+02:00",
+      "Id": "8e3b7a5f-91a0-483e-ab95-9ba6595e4696"
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "Id": "400fed8c-7a0b-4623-9d92-d4553663e1e7",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7342826+02:00",
+      "Id": "400fed8c-7a0b-4623-9d92-d4553663e1e7"
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "Id": "90f45811-4fb8-4d9a-806d-ec0cb52dcf54",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:31.7342902+02:00",
+      "Id": "90f45811-4fb8-4d9a-806d-ec0cb52dcf54"
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "Id": "4229deb7-3d1d-4297-a84a-c3ff22411f43",
+    "Information": {
+      "CreationDate": "2023-11-13T13:52:38.6005461+02:00",
+      "Id": "4229deb7-3d1d-4297-a84a-c3ff22411f43"
+    }
+  },
+  {
+    "Name": "New Note",
+    "Value": "Hello",
+    "Rows": 10,
+    "Columns": 100,
+    "Category": 3,
+    "Id": "89187a52-67d0-49aa-aacf-528e0bad7c28",
+    "Information": {
+      "CreationDate": "2023-11-13T13:56:00.25603+02:00",
+      "Id": "89187a52-67d0-49aa-aacf-528e0bad7c28"
     }
   }
 ]

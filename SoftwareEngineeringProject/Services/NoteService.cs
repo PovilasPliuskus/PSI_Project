@@ -7,6 +7,12 @@ namespace SoftwareEngineeringProject.Services
     public class NoteService : INoteService
     {
         private List<Note> _notes = new List<Note>();
+        private readonly NoteContext _context;
+
+        public NoteService(NoteContext context)
+        {
+            _context = context;
+        }
 
         public List<Note> GetNotes() { return _notes; }
         public void SaveToFile<T>(string filepath, List<T> items)
@@ -47,7 +53,8 @@ namespace SoftwareEngineeringProject.Services
 
         public void AddNote(Note note)
         {
-            _notes.Add(note);
+            _context.Notes.Add(note);
+            _context.SaveChanges();
         }
 
         public void PrintList()
@@ -75,6 +82,29 @@ namespace SoftwareEngineeringProject.Services
             }
         }
 
+        public bool NoteExists(Guid noteId)
+        {
+            return _context.Notes.Any(n => n.Id == noteId);
+        }
 
+        public void UpdateNote(Note updatedNote)
+        {
+            var existingNote = _context.Notes.FirstOrDefault(n => n.Id == updatedNote.Id);
+
+            if (existingNote != null)
+            {
+                // Update the existing note with the new values
+                existingNote.Name = updatedNote.Name;
+                existingNote.Value = updatedNote.Value;
+
+                // Save changes to the database
+                _context.SaveChanges();
+            }
+        }
+
+        public List<Note> GetNotesFromDatabase()
+        {
+            return _context.Notes.ToList();
+        }
     }
 }

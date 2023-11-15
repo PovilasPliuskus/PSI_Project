@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SoftwareEngineeringProject.Enums;
 using SoftwareEngineeringProject.Models;
 using SoftwareEngineeringProject.Services;
@@ -8,10 +9,9 @@ namespace SoftwareEngineeringProject.Controllers
     // Notes Controller
     public class ProjectPagesController : Controller
     {
-        private NoteService _noteService;
-        // private readonly interface (repo dar)
+        private readonly INoteService _noteService;
 
-        public ProjectPagesController(NoteService noteService)
+        public ProjectPagesController(INoteService noteService)
         {
             _noteService = noteService;
         }
@@ -32,23 +32,57 @@ namespace SoftwareEngineeringProject.Controllers
         {
             try
             {
-                // Replace the server-side list of notes with the client-side list
-                _noteService.ReplaceNotes(clientNotes);
-                _noteService.SaveToFile("Data/noteData.json", _noteService.GetNotes());
-                _noteService.PrintNotesWordCount();
+                // Get the list of existing notes from the database
+                List<Note> existingNotes = _noteService.GetNotesFromDatabase();
 
-                return Ok("Notes saved to server successfully.");
+                foreach (var note in clientNotes)
+                {
+                    var existingNote = existingNotes.FirstOrDefault(n => n.Id == note.Id);
+
+                    if (existingNote != null)
+                    {
+                        // Note with the same ID exists, update it with the new values
+                        existingNote.Name = note.Name;
+                        existingNote.Value = note.Value;
+                        _noteService.UpdateNote(existingNote);
+                    }
+                    else
+                    {
+                        // Note with the same ID doesn't exist, add the new note
+                        _noteService.AddNote(note);
+                    }
+                }
+
+                // After processing all clientNotes, you may want to clean up the database by removing notes that are no longer in the clientNotes list. This depends on your requirements.
+
+                _noteService.PrintList(); // Print the list (optional)
+
+                return Ok("Notes saved to the database successfully.");
             }
             catch (Exception ex)
             {
-                return BadRequest("Error saving notes to server: " + ex.Message);
+                return BadRequest("Error saving notes to the database: " + ex.Message);
             }
         }
+
         public IActionResult LoadNotes()
         {
-                _noteService.LoadFromFile("Data/noteData.json");
-                return Json(_noteService.GetNotes());
+            try
+            {
+                List<Note> notes = _noteService.GetNotesFromDatabase();
+                return Json(notes);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error loading notes from the database: " + ex.Message);
+            }
         }
+
+        /*        public IActionResult LoadNotes()
+                {
+                    _noteService.LoadFromFile("Data/noteData.json");
+                    return Json(_noteService.GetNotes());
+                }*/
 
         [HttpPost]
         public IActionResult SortNotes(string sortOption)
