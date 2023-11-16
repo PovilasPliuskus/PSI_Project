@@ -3,7 +3,7 @@ window.addEventListener("load",function (){
 });
 
 function loadNotesFromFile(){
-    fetch("/ProjectPages/LoadNotes")
+    fetch("/Notes/LoadNotes")
         .then(response => response.json())
         .then(data => {
             noteList.push(...data);

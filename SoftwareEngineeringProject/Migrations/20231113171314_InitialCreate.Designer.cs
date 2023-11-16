@@ -11,7 +11,7 @@ using SoftwareEngineeringProject.Models;
 
 namespace SoftwareEngineeringProject.Migrations
 {
-    [DbContext(typeof(NoteContext))]
+    [DbContext(typeof(NoteDBContext))]
     [Migration("20231113171314_InitialCreate")]
     partial class InitialCreate
     {

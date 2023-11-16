@@ -5,7 +5,7 @@
 
 
 function saveNotesToFile() {
-    fetch("/ProjectPages/SaveNotes", {
+    fetch("/Notes/SaveNotes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

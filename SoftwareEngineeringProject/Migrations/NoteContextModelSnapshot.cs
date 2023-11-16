@@ -10,7 +10,7 @@ using SoftwareEngineeringProject.Models;
 
 namespace SoftwareEngineeringProject.Migrations
 {
-    [DbContext(typeof(NoteContext))]
+    [DbContext(typeof(NoteDBContext))]
     partial class NoteContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
