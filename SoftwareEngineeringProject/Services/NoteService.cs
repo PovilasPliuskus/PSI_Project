@@ -7,9 +7,9 @@ namespace SoftwareEngineeringProject.Services
     public class NoteService : INoteService
     {
         private List<Note> _notes = new List<Note>();
-        private readonly NoteContext _context;
+        private readonly NoteDBContext _context;
 
-        public NoteService(NoteContext context)
+        public NoteService(NoteDBContext context)
         {
             _context = context;
         }

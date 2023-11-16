@@ -7,11 +7,11 @@ using SoftwareEngineeringProject.Services;
 namespace SoftwareEngineeringProject.Controllers
 {
     // Notes Controller
-    public class ProjectPagesController : Controller
+    public class NotesController : Controller
     {
         private readonly INoteService _noteService;
 
-        public ProjectPagesController(INoteService noteService)
+        public NotesController(INoteService noteService)
         {
             _noteService = noteService;
         }
@@ -27,6 +27,7 @@ namespace SoftwareEngineeringProject.Controllers
             return Json(testNote);
         }
 
+        // 
         [HttpPost]
         public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
         {

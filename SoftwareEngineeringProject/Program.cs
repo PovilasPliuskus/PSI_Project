@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 // AddScoped
 builder.Services.AddScoped<INoteService, NoteService>();
 
-builder.Services.AddDbContext<NoteContext>(options =>
+builder.Services.AddDbContext<NoteDBContext>(options =>
 {
     options.UseSqlServer("Server = tcp:psiserver.database.windows.net, 1433; Initial Catalog = PSIProject; Persist Security Info = False; User ID = serveradmin; Password =SunkusSlaptazodis123+; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
 });

@@ -1,7 +1,7 @@
 const noteList = [];
 
 document.getElementById("addNoteButton").addEventListener("click", function () {
-    fetch("/ProjectPages/CreateNote")
+    fetch("/Notes/CreateNote")
         .then(response => response.json())
         .then(data => {
             // Add the received Note object to the noteList

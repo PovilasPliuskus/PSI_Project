@@ -7,7 +7,7 @@
         sortOption: sortOption
     };
 
-    fetch("/ProjectPages/SortNotes?sortOption=" + sortOption, {
+    fetch("/Notes/SortNotes?sortOption=" + sortOption, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

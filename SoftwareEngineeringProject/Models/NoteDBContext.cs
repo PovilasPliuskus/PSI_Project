@@ -2,11 +2,12 @@
 
 namespace SoftwareEngineeringProject.Models
 {
-    public class NoteContext : DbContext
+    public class NoteDBContext : DbContext
     {
         public DbSet<Note> Notes { get; set;}
 
-        public NoteContext(DbContextOptions options) : base(options)
+        // NoteDBContext
+        public NoteDBContext(DbContextOptions options) : base(options)
         {
             
         }
