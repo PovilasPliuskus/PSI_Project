@@ -4,7 +4,13 @@ namespace SoftwareEngineeringProject.Services
 {
     public class UserService : IUserService
     {
+        private readonly NoteDBContext _context;
         private static List<User> _users = new List<User>();
+
+        public UserService(NoteDBContext context)
+        {
+            _context = context;
+        }
 
         public void PrintUsers()
         {
@@ -27,9 +33,11 @@ namespace SoftwareEngineeringProject.Services
                 newUser.UserId = Guid.NewGuid();
                 _users.Add(newUser);
 
-                // You might want to save the users to a database here
 
-                Console.WriteLine("User created successfully.");
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+
+                Console.WriteLine("User created and saved to the database successfully.");
             }
             catch (Exception ex)
             {
