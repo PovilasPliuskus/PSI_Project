@@ -25,8 +25,34 @@ function createButton(data) {
 
     const notesNameSpan = document.createElement("span");
     const notesValueSpan = document.createElement("span");
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "Remove";
+    removeButton.classList.add("remove-button");
+
+    removeButton.addEventListener("click", function (event) {
+        const buttonId = event.target.parentNode.id;
+        fetch(`/Notes/RemoveNote?noteId=${buttonId}`, {
+            method: "POST",
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    const buttonToRemove = document.getElementById(buttonId);
+                    buttonToRemove.parentNode.removeChild(buttonToRemove);
+                    location.reload();
+                } else {
+                    console.error("Error removing note:", result.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error removing note:", error);
+            });
+    });
+
+
     button.appendChild(notesNameSpan);
     button.appendChild(notesValueSpan);
+    button.appendChild(removeButton);
     button.classList.add("note-button");
     notesNameSpan.classList.add("notes-name-span");
 

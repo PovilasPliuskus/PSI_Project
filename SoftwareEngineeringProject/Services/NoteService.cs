@@ -106,5 +106,29 @@ namespace SoftwareEngineeringProject.Services
         {
             return _context.Notes.ToList();
         }
+
+        public Note GetNoteById(Guid noteId)
+        {
+            return _context.Notes.FirstOrDefault(n => n.Id == noteId);
+        }
+
+        public void RemoveNote(Note noteToRemove)
+        {
+            try
+            {
+                var existingNote = _context.Notes.FirstOrDefault(n => n.Id == noteToRemove.Id);
+
+                if (existingNote != null)
+                {
+                    _context.Notes.Remove(existingNote);
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error removing note: " + ex.Message);
+                throw;
+            }
+        }
     }
 }
