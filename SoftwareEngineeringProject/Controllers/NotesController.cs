@@ -27,13 +27,11 @@ namespace SoftwareEngineeringProject.Controllers
             return Json(testNote);
         }
 
-        // 
         [HttpPost]
         public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
         {
             try
             {
-                // Get the list of existing notes from the database
                 List<Note> existingNotes = _noteService.GetNotesFromDatabase();
 
                 foreach (var note in clientNotes)
@@ -42,21 +40,17 @@ namespace SoftwareEngineeringProject.Controllers
 
                     if (existingNote != null)
                     {
-                        // Note with the same ID exists, update it with the new values
                         existingNote.Name = note.Name;
                         existingNote.Value = note.Value;
                         _noteService.UpdateNote(existingNote);
                     }
                     else
                     {
-                        // Note with the same ID doesn't exist, add the new note
                         _noteService.AddNote(note);
                     }
                 }
 
-                // After processing all clientNotes, you may want to clean up the database by removing notes that are no longer in the clientNotes list. This depends on your requirements.
-
-                _noteService.PrintList(); // Print the list (optional)
+                _noteService.PrintList();
 
                 return Ok("Notes saved to the database successfully.");
             }
@@ -79,11 +73,30 @@ namespace SoftwareEngineeringProject.Controllers
             }
         }
 
-        /*        public IActionResult LoadNotes()
+
+        [HttpPost]
+        public IActionResult RemoveNote(Guid noteId)
+        {
+            try
+            {
+                var noteToRemove = _noteService.GetNoteById(noteId);
+
+                if (noteToRemove != null)
                 {
-                    _noteService.LoadFromFile("Data/noteData.json");
-                    return Json(_noteService.GetNotes());
-                }*/
+                    _noteService.RemoveNote(noteToRemove);
+                    return Ok(new { success = true, message = $"Note with ID {noteId} removed successfully." });
+                }
+                else
+                {
+                    return NotFound(new { success = false, message = $"Note with ID {noteId} not found." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error removing note from the database: " + ex.Message });
+            }
+        }
+
 
         [HttpPost]
         public IActionResult SortNotes(string sortOption)

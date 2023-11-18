@@ -14,5 +14,7 @@ namespace SoftwareEngineeringProject.Services
         public bool NoteExists(Guid noteId);
         public void UpdateNote(Note updatedNote);
         public List<Note> GetNotesFromDatabase();
+        public Note GetNoteById(Guid noteId);
+        public void RemoveNote(Note noteToRemove);
     }
 }

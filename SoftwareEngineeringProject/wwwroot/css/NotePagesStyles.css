@@ -72,3 +72,7 @@
     text-align: center;
     font-weight: bold;
 }
+
+.remove-button {
+    color: red;
+}
