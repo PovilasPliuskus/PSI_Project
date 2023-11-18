@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // AddScoped
 builder.Services.AddScoped<INoteService, NoteService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<NoteDBContext>(options =>
 {
