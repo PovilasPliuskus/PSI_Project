@@ -12,6 +12,8 @@ namespace SoftwareEngineeringProject.Models
         private String _value;
         private NoteCategory _category;
 
+        public ICollection<UserNotes> UserNotes { get; set; }
+
         public String Name
         {
             get { return _name; }
