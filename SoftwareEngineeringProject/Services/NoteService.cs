@@ -6,7 +6,7 @@ namespace SoftwareEngineeringProject.Services
 {
     public class NoteService : INoteService
     {
-        private List<Note> _notes = new List<Note>();
+        private static List<Note> _notes = new List<Note>();
         private readonly NoteDBContext _context;
 
         public NoteService(NoteDBContext context)
