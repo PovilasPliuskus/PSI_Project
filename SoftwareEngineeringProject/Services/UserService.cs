@@ -44,5 +44,10 @@ namespace SoftwareEngineeringProject.Services
                 Console.WriteLine("Error creating user: " + ex.Message);
             }
         }
+
+        public User GetUserByEmailAndPassword(string email, string password)
+        {
+            return _context.Users.FirstOrDefault(u => u.EmailAddress == email && u.Password == password);
+        }
     }
 }
