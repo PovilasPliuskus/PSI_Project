@@ -18,7 +18,7 @@
         .then(response => {
             if (response.ok) {
                 console.log("Login successful");
-                // Redirect to a new page or perform other actions
+                window.location.href = "/Notes/NotePage";
             } else {
                 // The login failed
                 console.log("Login failed");
