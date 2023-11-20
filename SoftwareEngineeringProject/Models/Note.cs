@@ -34,18 +34,21 @@ namespace SoftwareEngineeringProject.Models
 
         public Guid Id { get; set; }
 
+        public string UserId { get; set; }
+
         public string GetCreationDate()
         {
             return _creationDate.ToString();
         }
 
-        public Note(string name = "New Note", string value = "", NoteCategory category = NoteCategory.Personal)
+        public Note(string name = "New Note", string value = "", NoteCategory category = NoteCategory.Personal, string userId = null)
         {
             _id = Guid.NewGuid();
             _creationDate = DateTime.Now;
             _name = name;
             _value = value;
             _category = category;
+            UserId = userId;
         }
 
         public void ToString()
