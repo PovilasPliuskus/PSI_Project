@@ -5,15 +5,11 @@ namespace SoftwareEngineeringProject.Services
 {
     public interface INoteService
     {
-        List<Note> GetNotes();
         public void SaveToFile<T>(string filepath, List<T> items);
-        void LoadFromFile(string filePath);
-        void AddNote(Note note);
-        void PrintList();
-        void ReplaceNotes(List<Note> newNotes);
+        public void AddNote(Note note, string connectedUserID);
         public bool NoteExists(Guid noteId);
-        public void UpdateNote(Note updatedNote);
-        public List<Note> GetNotesFromDatabase();
+        public void UpdateNote(Note updatedNote, string connectedUserId);
+        public List<Note> GetNotesFromDatabase(string connectedUserId);
         public Note GetNoteById(Guid noteId);
         public void RemoveNote(Note noteToRemove);
     }

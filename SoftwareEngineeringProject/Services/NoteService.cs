@@ -6,7 +6,6 @@ namespace SoftwareEngineeringProject.Services
 {
     public class NoteService : INoteService
     {
-        private static List<Note> _notes = new List<Note>();
         private readonly NoteDBContext _context;
 
         public NoteService(NoteDBContext context)
@@ -14,7 +13,6 @@ namespace SoftwareEngineeringProject.Services
             _context = context;
         }
 
-        public List<Note> GetNotes() { return _notes; }
         public void SaveToFile<T>(string filepath, List<T> items)
         {
             try
@@ -35,51 +33,15 @@ namespace SoftwareEngineeringProject.Services
                 Console.WriteLine("Error saving notes: " + ex.Message);
             }
         }
-        public void LoadFromFile(string filePath)
-        {
-            try
-            {
-                using (StreamReader fileReader = File.OpenText(filePath))
-                {
-                    var jsonString = fileReader.ReadToEnd();
-                    _notes = JsonSerializer.Deserialize<List<Note>>(jsonString); //returns a list of notes from file
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error loading notes: " + ex.Message);
-            }
-        }
 
-        public void AddNote(Note note)
+        public void AddNote(Note note, string connectedUserId)
         {
+            // Assign the connected user ID to the note
+            note.UserId = connectedUserId;
+
+            // Save the note to the database
             _context.Notes.Add(note);
             _context.SaveChanges();
-        }
-
-        public void PrintList()
-        {
-            Console.WriteLine("Number of notes: " + _notes.Count);
-            foreach (Note note in _notes)
-            {
-                note.ToString();
-            }
-        }
-
-        public void ReplaceNotes(List<Note> newNotes)
-        {
-            _notes.Clear();
-
-            // Add the new list of notes to the service
-            _notes.AddRange(newNotes);
-        }
-
-        public void PrintNotesWordCount()
-        {
-            foreach(Note note in _notes)
-            {
-                Console.WriteLine(note.Value.WordCount());
-            }
         }
 
         public bool NoteExists(Guid noteId)
@@ -87,24 +49,36 @@ namespace SoftwareEngineeringProject.Services
             return _context.Notes.Any(n => n.Id == noteId);
         }
 
-        public void UpdateNote(Note updatedNote)
+        public void UpdateNote(Note updatedNote, string connectedUserId)
         {
-            var existingNote = _context.Notes.FirstOrDefault(n => n.Id == updatedNote.Id);
 
-            if (existingNote != null)
+            // Ensure that the user owns the note before updating
+            if (_context.Notes.Any(n => n.Id == updatedNote.Id && n.UserId == connectedUserId))
             {
-                // Update the existing note with the new values
-                existingNote.Name = updatedNote.Name;
-                existingNote.Value = updatedNote.Value;
+                var existingNote = _context.Notes.FirstOrDefault(n => n.Id == updatedNote.Id);
 
-                // Save changes to the database
-                _context.SaveChanges();
+                if (existingNote != null)
+                {
+                    // Update the existing note with the new values
+                    existingNote.Name = updatedNote.Name;
+                    existingNote.Value = updatedNote.Value;
+
+                    // Save changes to the database
+                    _context.SaveChanges();
+                }
+            }
+            else
+            {
+                // Handle unauthorized update (the user does not own the note)
+                throw new InvalidOperationException("Unauthorized update attempt.");
             }
         }
 
-        public List<Note> GetNotesFromDatabase()
+        public List<Note> GetNotesFromDatabase(string connectedUserId)
         {
-            return _context.Notes.ToList();
+
+            // Filter notes by user ID
+            return _context.Notes.Where(n => n.UserId == connectedUserId).ToList();
         }
 
         public Note GetNoteById(Guid noteId)

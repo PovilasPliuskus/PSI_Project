@@ -42,5 +42,34 @@ namespace SoftwareEngineeringProject.Controllers
                 return BadRequest($"Error creating user: {ex.Message}");
             }
         }
+
+        [HttpPost]
+        public IActionResult LogIn([FromBody] UserLoginModel loginModel)
+        {
+            try
+            {
+                // Check if the email and password match
+                var user = _userService.GetUserByEmailAndPassword(loginModel.Email, loginModel.Password);
+
+                if (user != null)
+                {
+                    HttpContext.Session.SetString("ConnectedUserId", user.UserId.ToString());
+                    HttpContext.Session.SetString("ConnectedUserFirstName", user.FirstName);
+
+                    Console.WriteLine($"Connected User ID: {HttpContext.Session.GetString("ConnectedUserId")}");
+                    Console.WriteLine($"Connected User Name: {HttpContext.Session.GetString("ConnectedUserFirstName")}");
+
+                    return Ok("Authentication successful!");
+                }
+                else
+                {
+                    return BadRequest("Invalid email or password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error during login: {ex.Message}");
+            }
+        }
     }
 }

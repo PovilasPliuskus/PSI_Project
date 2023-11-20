@@ -22,8 +22,12 @@ namespace SoftwareEngineeringProject.Controllers
 
         public IActionResult CreateNote()
         {
-            var testNote = new Note(value: "Hello");
-            _noteService.AddNote(testNote);
+            // Get the connected user ID from the session
+            var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
+
+            // Create a note associated with the user ID
+            var testNote = new Note { Value = "Hello" }; // You might want to set other properties too.
+            _noteService.AddNote(testNote, connectedUserId);
             return Json(testNote);
         }
 
@@ -32,7 +36,13 @@ namespace SoftwareEngineeringProject.Controllers
         {
             try
             {
-                List<Note> existingNotes = _noteService.GetNotesFromDatabase();
+                // Get the connected user ID from the session
+                var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
+
+                // Filter existing notes by user ID
+                List<Note> existingNotes = _noteService.GetNotesFromDatabase(connectedUserId)
+                    .Where(n => n.UserId == connectedUserId)
+                    .ToList();
 
                 foreach (var note in clientNotes)
                 {
@@ -42,15 +52,15 @@ namespace SoftwareEngineeringProject.Controllers
                     {
                         existingNote.Name = note.Name;
                         existingNote.Value = note.Value;
-                        _noteService.UpdateNote(existingNote);
+                        _noteService.UpdateNote(existingNote, connectedUserId);
                     }
                     else
                     {
-                        _noteService.AddNote(note);
+                        // Set the user ID for new notes
+                        note.UserId = connectedUserId;
+                        _noteService.AddNote(note, connectedUserId);
                     }
                 }
-
-                _noteService.PrintList();
 
                 return Ok("Notes saved to the database successfully.");
             }
@@ -64,7 +74,14 @@ namespace SoftwareEngineeringProject.Controllers
         {
             try
             {
-                List<Note> notes = _noteService.GetNotesFromDatabase();
+                // Get the connected user ID from the session
+                var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
+
+                // Filter notes by user ID
+                List<Note> notes = _noteService.GetNotesFromDatabase(connectedUserId)
+                    .Where(n => n.UserId == connectedUserId)
+                    .ToList();
+
                 return Json(notes);
             }
             catch (Exception ex)
@@ -98,7 +115,7 @@ namespace SoftwareEngineeringProject.Controllers
         }
 
 
-        [HttpPost]
+/*        [HttpPost]
         public IActionResult SortNotes(string sortOption)
         {
             NoteComparer comparer = null;
@@ -138,6 +155,6 @@ namespace SoftwareEngineeringProject.Controllers
             }
 
             return Json(_noteService.GetNotes());
-        }
+        }*/
     }
 }

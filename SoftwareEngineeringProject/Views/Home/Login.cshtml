@@ -6,6 +6,10 @@
      <link rel="stylesheet" type="text/css" href="/css/Authentication.css">
 }
 
+@section Scripts {
+    <script src="~/js/LogIn.js"></script>
+}
+
 <div style="display: flex; justify-content: center; padding-top: 20px;">
     <div class="custom-form">
         <h1 class="text-center">Log in</h1>
@@ -18,7 +22,7 @@
                 <label for="InputPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" id="InputPassword">
             </div>
-            <button type="submit" class="login-btn mb-3 mt-3">Log in</button>
+            <button type="button" class="login-btn mb-3 mt-3" onclick="handleLogIn()">Log in</button>
             <p>Don’t have an account? <a class="green-link" asp-controller="Home" asp-action="Signup">Sign up</a></p>
         </form>
     </div>
