@@ -6,7 +6,6 @@ using SoftwareEngineeringProject.Services;
 
 namespace SoftwareEngineeringProject.Controllers
 {
-    // Notes Controller
     public class NotesController : Controller
     {
         private readonly INoteService _noteService;
@@ -25,8 +24,7 @@ namespace SoftwareEngineeringProject.Controllers
             // Get the connected user ID from the session
             var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
 
-            // Create a note associated with the user ID
-            var testNote = new Note { Value = "Hello" }; // You might want to set other properties too.
+            var testNote = new Note { Value = "Hello" };
             _noteService.AddNote(testNote, connectedUserId);
             return Json(testNote);
         }

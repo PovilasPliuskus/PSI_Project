@@ -50,16 +50,5 @@ namespace SoftwareEngineeringProject.Services
         {
             return _context.Users.FirstOrDefault(u => u.EmailAddress == email && u.Password == password);
         }
-
-/*        public void LinkConnectedUser(User user)
-        {
-            HttpContext.Session.SetString("ConnectedUserId", user.UserId.ToString());
-            HttpContext.Session.SetString("ConnectedUserFirstName", user.FirstName);
-        }
-
-        public string GetConnectedUserID()
-        {
-            return HttpContext.Session.GetString("ConnectedUserId");
-        }*/
     }
 }
