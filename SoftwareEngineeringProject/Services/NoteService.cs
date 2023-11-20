@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
 using SoftwareEngineeringProject.Extensions;
 using SoftwareEngineeringProject.Models;
+using SoftwareEngineeringProject.Delegates;
+using SoftwareEngineeringProject.CustomExceptions;
 
 namespace SoftwareEngineeringProject.Services
 {
@@ -12,6 +14,21 @@ namespace SoftwareEngineeringProject.Services
         {
             _context = context;
         }
+
+        LogDelegate PrintConsole = (string message) =>
+        {
+            Console.WriteLine($"[LOG] {DateTime.Now}:  {message}");
+        };
+
+        LogDelegate PrintToFile = (string message) =>
+        {
+            File.AppendAllText("Data/logs.txt", $"[LOG] {DateTime.Now}:  {message}\n");
+        };
+
+        LogDelegate PrintError = (string message) =>
+        {
+            File.AppendAllText("Data/logs.txt", $"[ERR] {DateTime.Now}:  {message}\n");
+        };
 
         public void SaveToFile<T>(string filepath, List<T> items)
         {
@@ -42,6 +59,9 @@ namespace SoftwareEngineeringProject.Services
             // Save the note to the database
             _context.Notes.Add(note);
             _context.SaveChanges();
+
+            PrintConsole($"Note added: {note.Name}");
+            PrintToFile($"Note added: {note.Name}");
         }
 
         public bool NoteExists(Guid noteId)
@@ -65,6 +85,9 @@ namespace SoftwareEngineeringProject.Services
 
                     // Save changes to the database
                     _context.SaveChanges();
+
+                    PrintConsole($"Note updated: {updatedNote.Name}");
+                    PrintToFile($"Note updated: {updatedNote.Name}");
                 }
             }
             else
@@ -76,9 +99,18 @@ namespace SoftwareEngineeringProject.Services
 
         public List<Note> GetNotesFromDatabase(string connectedUserId)
         {
+            try
+            {
+                // Filter notes by user ID
+                return _context.Notes.Where(n => n.UserId == connectedUserId).ToList();
+            }
+            catch (Exception ex)
+            {
+                PrintError($"Exception while loading notes: {ex.Message}");
 
-            // Filter notes by user ID
-            return _context.Notes.Where(n => n.UserId == connectedUserId).ToList();
+                throw new LoadFromDBException("Error loading notes from the database", PrintError);
+            }
+
         }
 
         public Note GetNoteById(Guid noteId)
@@ -96,6 +128,9 @@ namespace SoftwareEngineeringProject.Services
                 {
                     _context.Notes.Remove(existingNote);
                     _context.SaveChanges();
+
+                    PrintConsole($"Note removed: {noteToRemove.Name}");
+                    PrintToFile($"Note removed: {noteToRemove.Name}");
                 }
             }
             catch (Exception ex)
