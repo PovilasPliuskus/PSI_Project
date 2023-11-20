@@ -53,6 +53,12 @@ namespace SoftwareEngineeringProject.Controllers
 
                 if (user != null)
                 {
+                    HttpContext.Session.SetString("ConnectedUserId", user.UserId.ToString());
+                    HttpContext.Session.SetString("ConnectedUserFirstName", user.FirstName);
+
+                    Console.WriteLine($"Connected User ID: {HttpContext.Session.GetString("ConnectedUserId")}");
+                    Console.WriteLine($"Connected User Name: {HttpContext.Session.GetString("ConnectedUserFirstName")}");
+
                     return Ok("Authentication successful!");
                 }
                 else

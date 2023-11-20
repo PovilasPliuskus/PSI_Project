@@ -8,13 +8,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// AddScoped
 builder.Services.AddScoped<INoteService, NoteService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<NoteDBContext>(options =>
 {
     options.UseSqlServer("Server = tcp:psiserver.database.windows.net, 1433; Initial Catalog = PSIProject; Persist Security Info = False; User ID = serveradmin; Password =SunkusSlaptazodis123+; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+});
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -30,6 +37,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
