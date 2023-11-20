@@ -19,18 +19,26 @@ namespace SoftwareEngineeringProject.Controllers
             return View();
         }
 
-        public IActionResult CreateNote()
+        public async Task<IActionResult> CreateNote()
         {
-            // Get the connected user ID from the session
-            var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
+            try
+            {
+                // Get the connected user ID from the session
+                var connectedUserId = HttpContext.Session.GetString("ConnectedUserId");
 
-            var testNote = new Note { Value = "Hello" };
-            _noteService.AddNote(testNote, connectedUserId);
-            return Json(testNote);
+                var testNote = new Note { Value = "Hello" };
+                await _noteService.AddNoteAsync(testNote, connectedUserId);
+
+                return Json(testNote);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error creating note: {ex.Message}");
+            }
         }
 
         [HttpPost]
-        public IActionResult SaveNotes([FromBody] List<Note> clientNotes)
+        public async Task<IActionResult> SaveNotes([FromBody] List<Note> clientNotes)
         {
             try
             {
@@ -50,13 +58,13 @@ namespace SoftwareEngineeringProject.Controllers
                     {
                         existingNote.Name = note.Name;
                         existingNote.Value = note.Value;
-                        _noteService.UpdateNote(existingNote, connectedUserId);
+                        await _noteService.UpdateNoteAsync(existingNote, connectedUserId);
                     }
                     else
                     {
                         // Set the user ID for new notes
                         note.UserId = connectedUserId;
-                        _noteService.AddNote(note, connectedUserId);
+                        await _noteService.AddNoteAsync(note, connectedUserId);
                     }
                 }
 
@@ -64,7 +72,7 @@ namespace SoftwareEngineeringProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Error saving notes to the database: " + ex.Message);
+                return BadRequest($"Error saving notes to the database: {ex.Message}");
             }
         }
 
